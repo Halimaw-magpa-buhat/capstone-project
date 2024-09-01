@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://du55rbuv3qpgi"]
+
+[ext_resource type="Script" path="res://gui/heart_container.gd" id="1_ltvqk"]
+
+[node name="heart_container" type="HBoxContainer"]
+offset_right = 141.0
+offset_bottom = 70.0
+theme_override_constants/separation = 5
+script = ExtResource("1_ltvqk")
