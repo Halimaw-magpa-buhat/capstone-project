@@ -1,0 +1,311 @@
+[gd_scene load_steps=14 format=3 uid="uid://cucssw7f13o7q"]
+
+[ext_resource type="Script" path="res://scripts/levels.gd" id="1_6ldv5"]
+[ext_resource type="Texture2D" uid="uid://l3swgx6x43kk" path="res://back.png" id="2_ryyov"]
+[ext_resource type="Texture2D" uid="uid://n2ubhx0rvbv8" path="res://Levels_img/img_level4.png" id="5_4dnot"]
+[ext_resource type="Texture2D" uid="uid://27i8hi3jcjvp" path="res://Levels_img/img_level2.png" id="5_5vavu"]
+[ext_resource type="Texture2D" uid="uid://dh2bd4j7y1kmd" path="res://Levels_img/img_level1.png" id="5_46mrw"]
+[ext_resource type="Texture2D" uid="uid://ctnsctaaqiq66" path="res://Next Square Button.png" id="5_b03ce"]
+[ext_resource type="Texture2D" uid="uid://dxyphqdari35i" path="res://Levels_img/img_level3.png" id="6_wxixm"]
+[ext_resource type="Texture2D" uid="uid://bdmi0caf57ju8" path="res://Levels_img/img_level5.png" id="7_p4oex"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j7utg"]
+texture = ExtResource("5_46mrw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ja1fh"]
+texture = ExtResource("5_5vavu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ycqkx"]
+texture = ExtResource("6_wxixm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bk5ei"]
+texture = ExtResource("5_4dnot")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jvyx4"]
+texture = ExtResource("7_p4oex")
+
+[node name="stage1" type="Node"]
+script = ExtResource("1_6ldv5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ryyov")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.5
+offset_right = 75.5
+offset_bottom = 51.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 37
+text = "Stage - 1
+"
+metadata/_edit_lock_ = true
+
+[node name="Level1" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 214.0
+offset_top = 129.0
+offset_right = 449.0
+offset_bottom = 271.0
+
+[node name="Panel" type="Panel" parent="Level1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_j7utg")
+metadata/_edit_lock_ = true
+
+[node name="level1 button" type="Button" parent="Level1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Level1"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 157.0
+offset_right = 179.0
+offset_bottom = 193.0
+theme_override_font_sizes/font_size = 20
+text = "Level-1"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Level2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 515.0
+offset_top = 130.0
+offset_right = 750.0
+offset_bottom = 272.0
+
+[node name="Panel" type="Panel" parent="Level2"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ja1fh")
+metadata/_edit_lock_ = true
+
+[node name="level 2 button" type="Button" parent="Level2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Level2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -63.5
+offset_top = 11.0
+offset_right = 70.5
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Level-2"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Level3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 805.0
+offset_top = 136.0
+offset_right = 1040.0
+offset_bottom = 278.0
+
+[node name="Panel" type="Panel" parent="Level3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ycqkx")
+metadata/_edit_lock_ = true
+
+[node name="level 3 button" type="Button" parent="Level3"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Level3"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 144.0
+offset_right = 187.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 20
+text = "Level-3
+"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Level4" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 361.0
+offset_top = 364.0
+offset_right = 596.0
+offset_bottom = 506.0
+
+[node name="Panel" type="Panel" parent="Level4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bk5ei")
+metadata/_edit_lock_ = true
+
+[node name="level 4 button" type="Button" parent="Level4"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Level4"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 144.0
+offset_right = 187.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 20
+text = "Level-4
+"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Level5" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 720.0
+offset_top = 360.0
+offset_right = 955.0
+offset_bottom = 502.0
+
+[node name="Panel" type="Panel" parent="Level5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jvyx4")
+metadata/_edit_lock_ = true
+
+[node name="level 5 button" type="Button" parent="Level5"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Level5"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 144.0
+offset_right = 187.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 20
+text = "Level-5
+"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -71.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="next" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource("5_b03ce")
+flat = true
+expand_icon = true
+
+[node name="main_menu" type="Button" parent="."]
+offset_left = 59.0
+offset_top = 563.0
+offset_right = 195.0
+offset_bottom = 625.0
+theme_override_font_sizes/font_size = 20
+text = "Main Menu"
+flat = true
+
+[connection signal="pressed" from="Level1/level1 button" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="Level2/level 2 button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="Level3/level 3 button" to="." method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="Level4/level 4 button" to="." method="_on_level_4_button_pressed"]
+[connection signal="pressed" from="Level5/level 5 button" to="." method="_on_level_5_button_pressed"]
+[connection signal="pressed" from="Control/next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="main_menu" to="." method="_on_main_menu_pressed"]
