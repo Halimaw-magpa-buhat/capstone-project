@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://b5jqf8p0x338v"]
+[gd_scene load_steps=23 format=3 uid="uid://b5jqf8p0x338v"]
 
 [ext_resource type="Script" path="res://scripts/Level1.gd" id="1_liw8v"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_fp2g2"]
+[ext_resource type="Texture2D" uid="uid://ccvdubyvhkvin" path="res://sunset.png" id="3_qessx"]
 [ext_resource type="PackedScene" uid="uid://cybl3kdacsf3x" path="res://saw/saw.tscn" id="4_5k7tq"]
 [ext_resource type="PackedScene" uid="uid://c1xhg0olcjb72" path="res://spike_trap/chainball.tscn" id="4_ea32c"]
 [ext_resource type="Texture2D" uid="uid://c7syj0xnhf4ix" path="res://Terrain (16x16).png" id="4_safi1"]
@@ -618,7 +619,8 @@ texture_filter = 1
 offset_left = 1.0
 offset_top = -1.0
 offset_right = 1728.0
-offset_bottom = 639.0
+offset_bottom = 674.0
+texture = ExtResource("3_qessx")
 expand_mode = 2
 metadata/_edit_lock_ = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bgfipkjypssoh"]
+[gd_scene load_steps=27 format=3 uid="uid://bgfipkjypssoh"]
 
 [ext_resource type="Script" path="res://scripts/Level1.gd" id="1_2tqye"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_at6rk"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://di401oje38r28" path="res://flatLight22.png" id="13_oxadg"]
 [ext_resource type="Texture2D" uid="uid://di047yr4xplh" path="res://flatLight24.png" id="14_0p2im"]
 [ext_resource type="PackedScene" uid="uid://byw8wh47bsy8g" path="res://scenes/Question.tscn" id="15_c1uwo"]
+[ext_resource type="PackedScene" uid="uid://c0g3h0x1nqvd0" path="res://scenes/Pause.tscn" id="15_roco3"]
 [ext_resource type="PackedScene" uid="uid://du55rbuv3qpgi" path="res://gui/heart_container.tscn" id="16_ddecr"]
 [ext_resource type="Script" path="res://scripts/Gameover.gd" id="17_nb52h"]
 [ext_resource type="PackedScene" uid="uid://vd7q7f24un2d" path="res://scenes/StarRatingSystem.tscn" id="18_p435a"]
@@ -728,6 +729,8 @@ texture_normal = ExtResource("14_0p2im")
 action = "jump"
 
 [node name="Pause canvas layer" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="Pause canvas layer" instance=ExtResource("15_roco3")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Pause canvas layer"]
 
