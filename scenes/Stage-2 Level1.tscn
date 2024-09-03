@@ -708,7 +708,6 @@ position = Vector2(422, 202)
 [node name="mobilecontrols" parent="scene objects" instance=ExtResource("11_j6e3d")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="scene objects/mobilecontrols"]
-visible = false
 
 [node name="right" type="TouchScreenButton" parent="scene objects/mobilecontrols/CanvasLayer"]
 position = Vector2(218, 513)
@@ -747,7 +746,6 @@ offset_bottom = 71.0
 
 [node name="Gameover" type="CanvasLayer" parent="."]
 process_mode = 2
-visible = false
 script = ExtResource("17_nb52h")
 
 [node name="Gameover" type="Control" parent="Gameover"]
@@ -812,7 +810,6 @@ text = "Main Menu"
 flat = true
 
 [node name="StarRatingSystem" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="StarRatingControl" parent="StarRatingSystem" instance=ExtResource("18_p435a")]
 process_mode = 2

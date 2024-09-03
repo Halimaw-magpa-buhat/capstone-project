@@ -69,3 +69,6 @@ func _on_hurtbox_area_entered(area):
 		
 		if currentHealth <= 0:
 			get_node("../../Gameover").game_over()
+
+
+

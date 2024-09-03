@@ -6,7 +6,7 @@ func _on_play_pressed():
 
 
 func _on_learning_materials_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://scenes/learning_materials.tscn")
 
 func _on_exit_pressed():
 	get_tree().quit()

@@ -732,7 +732,6 @@ offset_bottom = 71.0
 
 [node name="Gameover" type="CanvasLayer" parent="."]
 process_mode = 2
-visible = false
 script = ExtResource("17_8mqei")
 
 [node name="Gameover" type="Control" parent="Gameover"]
@@ -797,7 +796,6 @@ text = "Main Menu"
 flat = true
 
 [node name="StarRatingSystem" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="StarRatingControl" parent="StarRatingSystem" instance=ExtResource("18_qk3j3")]
 process_mode = 2

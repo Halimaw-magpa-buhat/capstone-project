@@ -619,7 +619,6 @@ script = SubResource("GDScript_fca4p")
 [node name="mobilecontrols" parent="scene objects" instance=ExtResource("11_25i36")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="scene objects/mobilecontrols"]
-visible = false
 
 [node name="right" type="TouchScreenButton" parent="scene objects/mobilecontrols/CanvasLayer"]
 position = Vector2(218, 513)
@@ -658,7 +657,6 @@ offset_bottom = 71.0
 
 [node name="Gameover" type="CanvasLayer" parent="."]
 process_mode = 2
-visible = false
 script = ExtResource("17_6hivl")
 
 [node name="Gameover" type="Control" parent="Gameover"]
@@ -723,7 +721,6 @@ text = "Main Menu"
 flat = true
 
 [node name="StarRatingSystem" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="StarRatingControl" parent="StarRatingSystem" instance=ExtResource("18_4yc27")]
 process_mode = 2

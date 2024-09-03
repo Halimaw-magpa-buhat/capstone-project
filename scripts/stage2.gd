@@ -23,7 +23,7 @@ func _on_s_2_lvl_5_pressed():
 
 
 func _on_nxt_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://scenes/stage3.tscn")
 
 
 func _on_back_pressed():
