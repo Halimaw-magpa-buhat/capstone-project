@@ -67,7 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_vcrof")
 
-[node name="S3 - lvl1" type="Button" parent="Level1"]
+[node name="S3 lvl1" type="Button" parent="Level1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -266,7 +266,7 @@ icon = ExtResource("9_up3ji")
 flat = true
 expand_icon = true
 
-[connection signal="pressed" from="Level1/S3 - lvl1" to="." method="_on_s_3__lvl_1_pressed"]
+[connection signal="pressed" from="Level1/S3 lvl1" to="." method="_on_s_3__lvl_1_pressed"]
 [connection signal="pressed" from="Level2/S3 lvl2" to="." method="_on_s_3_lvl_2_pressed"]
 [connection signal="pressed" from="Level3/S3 lvl3" to="." method="_on_s_3_lvl_3_pressed"]
 [connection signal="pressed" from="Level4/S3 lvl4" to="." method="_on_s_3_lvl_4_pressed"]

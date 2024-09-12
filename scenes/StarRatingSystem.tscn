@@ -98,15 +98,11 @@ offset_top = 452.0
 offset_right = 490.0
 offset_bottom = 538.0
 
-[node name="nextLvl" type="Button" parent="Panel/Control3"]
+[node name="next lvl" type="Button" parent="Panel/Control3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -10.0
-offset_right = 4.0
-offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 icon = ExtResource("5_dbde1")
@@ -133,4 +129,4 @@ flat = true
 expand_icon = true
 
 [connection signal="pressed" from="Panel/Control4/stage button" to="." method="_on_stage_button_pressed"]
-[connection signal="pressed" from="Panel/Control3/nextLvl" to="." method="_on_next_lvl_pressed"]
+[connection signal="pressed" from="Panel/Control3/next lvl" to="." method="_on_next_lvl_pressed"]

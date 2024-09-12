@@ -1,9 +1,12 @@
 extends Control
 
+@onready var ErrorLabel = $Panel/ErrorLabel
+@onready var ResultLabel = $Panel/ResultLabel
+
 signal starChanged
 
 var questions = [
-	{
+{
 		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find the names of all employees who work in the 'Marketing' department.",
 		"answer": "SELECT first_name, last_name FROM Employees WHERE department = 'Marketing';"
 	},
@@ -44,9 +47,10 @@ var questions = [
 		"answer": "UPDATE Employees SET salary = 40000 WHERE salary IS NULL;"
 	}
 ]
+
 var current_question = {}
 var current_answer = ""
-var current_fruit_id = -1  # Declared the variable here
+var current_fruit_id = -1
 
 @export var maxStars = 3
 var currentStar = 0
@@ -60,13 +64,19 @@ func _ready():
 func _on_send_pressed():
 	var user_input = $Panel/LineEdit.text
 
+	if user_input.strip_edges() == "":
+		show_error_message("Input cannot be empty!")
+		return
+
 	# Check if the user's input matches the correct answer
 	if user_input.strip_edges() == current_answer.strip_edges():
 		print("Correct answer!")
 		currentStar += 1
 		starChanged.emit(currentStar)
+		display_result("Correct answer!", "")
 	else:
 		print("Wrong answer!")
+		display_result("Wrong answer!", "")
 
 	# Mark the question as answered for the corresponding fruit
 	GameManager.mark_question_answered(current_fruit_id)
@@ -83,7 +93,7 @@ func _on_send_pressed():
 
 # Function to show the question scene
 func show_question(fruit_id: int):
-	current_fruit_id = fruit_id  # Store the ID of the current fruit
+	current_fruit_id = fruit_id
 	current_question = questions[randi() % questions.size()]
 	current_answer = current_question["answer"]
 
@@ -94,3 +104,13 @@ func show_question(fruit_id: int):
 # Function to clear the LineEdit text
 func clear_input():
 	$Panel/LineEdit.text = ""
+
+# Function to show an error message
+func show_error_message(message: String):
+	ErrorLabel.text = message
+	ErrorLabel.visible = true
+
+# Function to display correct or wrong result
+func display_result(message: String, detail: String):
+	ResultLabel.text = message + " " + detail
+	ResultLabel.visible = true

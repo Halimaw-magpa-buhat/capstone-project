@@ -9,17 +9,17 @@
 script = ExtResource("1_hpypi")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1282.0
+offset_right = 1452.0
 offset_bottom = 650.0
 expand_mode = 2
 
 [node name="Control2" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 26.0
+offset_left = 28.0
 offset_top = 537.0
-offset_right = 129.0
-offset_bottom = 640.0
+offset_right = 117.0
+offset_bottom = 622.0
 metadata/_edit_group_ = true
 
 [node name="previous_page" type="Button" parent="Control2"]
@@ -36,10 +36,10 @@ expand_icon = true
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1140.0
-offset_top = 532.0
-offset_right = 1243.0
-offset_bottom = 635.0
+offset_left = 1325.0
+offset_top = 549.0
+offset_right = 1414.0
+offset_bottom = 634.0
 metadata/_edit_group_ = true
 
 [node name="next_page" type="Button" parent="Control"]
@@ -56,10 +56,10 @@ expand_icon = true
 [node name="Control3" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1201.0
-offset_top = 19.0
-offset_right = 1241.0
-offset_bottom = 59.0
+offset_left = 1402.0
+offset_top = 34.0
+offset_right = 1442.0
+offset_bottom = 74.0
 metadata/_edit_group_ = true
 
 [node name="exit" type="Button" parent="Control3"]

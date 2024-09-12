@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://o3jr5qpoarso"]
+[gd_scene load_steps=8 format=3 uid="uid://o3jr5qpoarso"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_q6sb0"]
 [ext_resource type="Texture2D" uid="uid://bdlqrlmalkt6e" path="res://mind-quest logo.png" id="2_oj25y"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://l3swgx6x43kk" path="res://back.png" id="4_crmtd"]
 [ext_resource type="Texture2D" uid="uid://ccmoxu04wt0th" path="res://middle.png" id="5_iii12"]
 [ext_resource type="Texture2D" uid="uid://c1d5taqd2tmbw" path="res://front.png" id="6_mrjeh"]
+[ext_resource type="PackedScene" uid="uid://d3hsvkpbnafbe" path="res://bg_music/main_menu_bg_music.tscn" id="7_prvtc"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_q6sb0")
@@ -78,10 +79,9 @@ position = Vector2(0, 1)
 motion_mirroring = Vector2(1125, 0)
 
 [node name="Back" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(576, 329)
-scale = Vector2(1.99306, 2.04321)
+position = Vector2(582.5, 328)
+scale = Vector2(1.9809, 2.04321)
 texture = ExtResource("4_crmtd")
-metadata/_edit_lock_ = true
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.7, 1)
@@ -90,12 +90,10 @@ motion_mirroring = Vector2(1125, 0)
 [node name="Middle" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 position = Vector2(293, 436)
 texture = ExtResource("5_iii12")
-metadata/_edit_lock_ = true
 
 [node name="Middle2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 position = Vector2(511, 420)
 texture = ExtResource("5_iii12")
-metadata/_edit_lock_ = true
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2(1125, 0)
@@ -103,7 +101,6 @@ motion_mirroring = Vector2(1125, 0)
 [node name="Front" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 position = Vector2(435, 442)
 texture = ExtResource("6_mrjeh")
-metadata/_edit_lock_ = true
 
 [node name="Front2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 position = Vector2(297, 430)
@@ -114,6 +111,8 @@ metadata/_edit_lock_ = true
 position = Vector2(865, 442)
 texture = ExtResource("6_mrjeh")
 metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("7_prvtc")]
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Learning Materials" to="." method="_on_learning_materials_pressed"]

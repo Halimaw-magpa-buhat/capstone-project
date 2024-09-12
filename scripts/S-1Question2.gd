@@ -58,11 +58,20 @@ func _ready():
 	$Panel/Send.pressed.connect(_on_send_pressed)
 	starChanged.connect(get_node("/root/Node/StarRatingSystem/StarRatingControl").star_rating_system)
 
-func _on_send_pressed():
-	var user_input = $Panel/LineEdit.text
+	# Enable copy-paste context for LineEdit
+	$Panel/LineEdit.context_menu_enabled = true  # Enable context menu for copy/paste
 
+
+func _on_send_pressed():
+	var user_input = $Panel/LineEdit.text.strip_edges()  # Strip any leading/trailing whitespace
+
+	# Check if the input is empty or null
+	if user_input == "":
+		print("Input cannot be empty!")
+		return  # Stop the function execution if the input is empty
+	
 	# Check if the user's input matches the correct answer
-	if user_input.strip_edges() == current_answer.strip_edges():
+	if user_input == current_answer.strip_edges():
 		print("Correct answer!")
 		currentStar += 1
 		starChanged.emit(currentStar)
@@ -82,6 +91,7 @@ func _on_send_pressed():
 	# After answering the question, check and trigger star rating system if all are done
 	GameManager.check_and_trigger_star_rating()
 
+
 # Function to show the question scene
 func show_question(fruit_id: int):
 	current_fruit_id = fruit_id  # Store the ID of the current fruit
@@ -91,6 +101,7 @@ func show_question(fruit_id: int):
 	$Panel/Label.text = current_question["question"]
 	self.visible = true
 	get_tree().paused = true
+
 
 # Function to clear the LineEdit text
 func clear_input():

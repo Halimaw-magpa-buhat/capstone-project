@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd2ipxlthfckk"]
+
+[ext_resource type="AudioStream" uid="uid://dtaajbs3kjynf" path="res://bg_music/Ludum Dare 38 - 09.ogg" id="1_hugtx"]
+[ext_resource type="Script" path="res://bg_music/bg_music.gd" id="2_hmigb"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_hugtx")
+autoplay = true
+script = ExtResource("2_hmigb")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cucssw7f13o7q"]
+[gd_scene load_steps=15 format=3 uid="uid://cucssw7f13o7q"]
 
 [ext_resource type="Script" path="res://scripts/levels.gd" id="1_6ldv5"]
+[ext_resource type="Script" path="res://scripts/level_manager.gd" id="2_ix3rf"]
 [ext_resource type="Texture2D" uid="uid://l3swgx6x43kk" path="res://back.png" id="2_ryyov"]
 [ext_resource type="Texture2D" uid="uid://n2ubhx0rvbv8" path="res://Levels_img/img_level4.png" id="5_4dnot"]
 [ext_resource type="Texture2D" uid="uid://27i8hi3jcjvp" path="res://Levels_img/img_level2.png" id="5_5vavu"]
@@ -26,6 +27,9 @@ texture = ExtResource("7_p4oex")
 
 [node name="stage1" type="Node"]
 script = ExtResource("1_6ldv5")
+
+[node name="Level_Manager" type="Node" parent="."]
+script = ExtResource("2_ix3rf")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15

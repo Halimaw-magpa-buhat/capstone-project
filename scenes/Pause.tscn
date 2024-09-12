@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0g3h0x1nqvd0"]
+[gd_scene load_steps=8 format=3 uid="uid://c0g3h0x1nqvd0"]
 
 [ext_resource type="Script" path="res://scripts/Pause.gd" id="1_odt1g"]
 [ext_resource type="Texture2D" uid="uid://vgcdky1lqqu0" path="res://Settings.png" id="2_o5dkc"]
 [ext_resource type="Texture2D" uid="uid://djpqnfe8cjqtq" path="res://Play Square Button.png" id="3_1o3s3"]
+[ext_resource type="PackedScene" uid="uid://dd2ipxlthfckk" path="res://bg_music/bg_music.tscn" id="3_gfmn0"]
 [ext_resource type="Texture2D" uid="uid://c3fvphvcfjrym" path="res://Return Square Button.png" id="4_4yxek"]
 [ext_resource type="Texture2D" uid="uid://bi6lsllfvp3gb" path="res://Home Square Button.png" id="5_aujwn"]
 
@@ -65,11 +66,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_k6yep")
 
 [node name="CheckButton" type="CheckButton" parent="PauseMenu/Panel"]
 layout_mode = 0
-offset_left = 153.0
-offset_top = 53.0
-offset_right = 197.0
-offset_bottom = 108.0
+offset_left = 165.0
+offset_top = 73.0
+offset_right = 209.0
+offset_bottom = 100.0
 expand_icon = true
+
+[node name="AudioStreamPlayer" parent="PauseMenu/Panel/CheckButton" instance=ExtResource("3_gfmn0")]
 
 [node name="resume" type="Button" parent="PauseMenu/Panel"]
 layout_mode = 0
@@ -117,6 +120,7 @@ text = "Sound
 horizontal_alignment = 1
 
 [connection signal="pressed" from="settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="PauseMenu/Panel/CheckButton" to="PauseMenu/Panel/CheckButton/AudioStreamPlayer" method="_on_check_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Panel/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Panel/restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/Panel/quit" to="." method="_on_quit_pressed"]

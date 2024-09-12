@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://byw8wh47bsy8g"]
+[gd_scene load_steps=5 format=3 uid="uid://byw8wh47bsy8g"]
 
 [ext_resource type="Script" path="res://scripts/S-1 Question1.gd" id="1_cieqh"]
+[ext_resource type="Script" path="res://scripts/ErrorLabel.gd" id="2_aynrn"]
+[ext_resource type="Script" path="res://scripts/ResultLabel.gd" id="3_uvg17"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i4ky"]
 content_margin_left = 10.0
@@ -18,17 +20,13 @@ border_blend = true
 [node name="Control" type="Control"]
 process_mode = 2
 layout_mode = 3
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -331.0
-offset_top = -216.0
 offset_right = 331.0
-offset_bottom = 216.0
+offset_bottom = 432.0
 grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1_cieqh")
 
 [node name="Panel" type="Panel" parent="."]
@@ -46,29 +44,55 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3i4ky")
 
+[node name="ErrorLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 204.0
+offset_right = 465.0
+offset_bottom = 246.0
+script = ExtResource("2_aynrn")
+
+[node name="Timer" type="Timer" parent="Panel/ErrorLabel"]
+
+[node name="ResultLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 201.0
+offset_right = 578.0
+offset_bottom = 248.0
+script = ExtResource("3_uvg17")
+
+[node name="Timer" type="Timer" parent="Panel/ResultLabel"]
+wait_time = 3.0
+one_shot = true
+
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 40.0
-offset_right = 574.0
-offset_bottom = 253.0
+offset_left = 78.0
+offset_top = 23.0
+offset_right = 578.0
+offset_bottom = 236.0
+theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="LineEdit" type="LineEdit" parent="Panel"]
 layout_mode = 0
-offset_left = 77.0
-offset_top = 224.0
-offset_right = 586.0
-offset_bottom = 275.0
+offset_left = 68.0
+offset_top = 257.0
+offset_right = 577.0
+offset_bottom = 308.0
 
 [node name="Send" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 243.0
-offset_top = 302.0
-offset_right = 393.0
-offset_bottom = 350.0
+offset_left = 240.0
+offset_top = 327.0
+offset_right = 390.0
+offset_bottom = 375.0
 theme_override_font_sizes/font_size = 20
 text = "Send
 "
+
+[connection signal="timeout" from="Panel/ErrorLabel/Timer" to="Panel/ErrorLabel" method="_on_timer_timeout"]
+[connection signal="timeout" from="Panel/ResultLabel/Timer" to="Panel/ResultLabel" method="_on_timer_timeout"]
