@@ -2,9 +2,8 @@ extends Label
 
 @onready var timer = $Timer
 
-# Function to show an error message
-func show_error_message(message: String):
-	text = message
+func correct_result(message: String, detail: String):
+	text = message + " " + detail
 	visible = true
 	timer.start()
 

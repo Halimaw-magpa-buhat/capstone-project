@@ -14,7 +14,6 @@ func _on_next_lvl_pressed():
 	LevelManager.load_next_level()  # Only load the next level dynamically
 
 func star_rating_system(currentStar: int):
-	get_tree().paused = false  # Unpause the game
 	var star_container = $starContainer
 	star_container.updateStars(currentStar)
 	
