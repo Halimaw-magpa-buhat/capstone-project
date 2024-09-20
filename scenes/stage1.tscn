@@ -206,7 +206,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bk5ei")
-metadata/_edit_lock_ = true
 
 [node name="level 4 button" type="Button" parent="Level4"]
 texture_filter = 1
@@ -217,7 +216,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="Level4"]
 layout_mode = 0

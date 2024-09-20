@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vd7q7f24un2d"]
+[gd_scene load_steps=9 format=3 uid="uid://vd7q7f24un2d"]
 
 [ext_resource type="Texture2D" uid="uid://bxv0u4xwytcvp" path="res://party-popper.png" id="1_4d0g1"]
 [ext_resource type="Script" path="res://scripts/StarRatingSystem.gd" id="1_ln46n"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cawhejr4ljidh" path="res://Back Square Button.png" id="3_j7mhh"]
 [ext_resource type="Texture2D" uid="uid://bi6lsllfvp3gb" path="res://Home Square Button.png" id="4_d5mje"]
 [ext_resource type="Texture2D" uid="uid://ctnsctaaqiq66" path="res://Next Square Button.png" id="5_dbde1"]
+[ext_resource type="PackedScene" uid="uid://cyx4xdqx12u1m" path="res://gui/star_container.tscn" id="7_x0lol"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5gfi"]
 bg_color = Color(0.898039, 0.827451, 0.701961, 1)
@@ -16,6 +17,7 @@ border_width_bottom = 10
 border_color = Color(0.588235, 0.588235, 0.588235, 1)
 
 [node name="Control" type="Control"]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 0
 offset_left = 338.0
@@ -127,6 +129,11 @@ grow_vertical = 2
 icon = ExtResource("3_j7mhh")
 flat = true
 expand_icon = true
+
+[node name="starContainer" parent="." instance=ExtResource("7_x0lol")]
+layout_mode = 1
+offset_top = -73.5
+offset_bottom = 73.5
 
 [connection signal="pressed" from="Panel/Control4/stage button" to="." method="_on_stage_button_pressed"]
 [connection signal="pressed" from="Panel/Control3/next lvl" to="." method="_on_next_lvl_pressed"]

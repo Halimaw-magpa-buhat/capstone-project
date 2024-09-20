@@ -112,7 +112,7 @@ func show_question(fruit_id: int):
 	current_question = questions[randi() % questions.size()]
 	current_answer = current_question["answer"]
 
-	$Panel/Label.text = current_question["question"]
+	$Panel/Question.text = current_question["question"]
 	self.visible = true
 	
 	# Only pause the game if the star rating system is not active

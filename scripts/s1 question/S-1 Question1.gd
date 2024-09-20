@@ -4,6 +4,8 @@ extends Control
 @onready var CorrectLabel = $Panel/CorrectLabel
 @onready var WrongLabel = $Panel/WrongLabel
 @onready var timer = $Timer  
+@onready var HintLabel = $Panel/HintLabel  # Label to display the hint
+@onready var HintTimer = $Panel/HintLabel/Timer  # Timer inside the HintLabel node
 
 signal starChanged
 
@@ -71,6 +73,8 @@ func _ready():
 	timer.timeout.connect(_on_timer_timeout)
 	timer.one_shot = true  # Ensure it's a one-shot timer (runs once then stops)
 
+	HintTimer.timeout.connect(_on_hint_timer_timeout)  # Connect the HintTimer timeout signal
+
 # Function to trigger star rating and keep the game paused
 func trigger_star_rating():
 	is_star_rating_active = true
@@ -112,17 +116,46 @@ func show_question(fruit_id: int):
 	current_question = questions[randi() % questions.size()]
 	current_answer = current_question["answer"]
 
-	$Panel/Label.text = current_question["question"]
+	$Panel/Question.text = current_question["question"]
 	self.visible = true
 	
 	# Only pause the game if the star rating system is not active
 	if not is_star_rating_active:
 		get_tree().paused = true
 
-
 # Function to clear the LineEdit text
 func clear_input():
 	$Panel/LineEdit.text = ""
+
+# Function to display the hint with SQL syntax based on the current question
+func _on_hint_pressed():
+	# Hide the question label and display the hint
+	$Panel/Question.visible = false  # Hide the question label
+	HintLabel.visible = true
+	HintLabel.text = show_hint_result(current_answer)  # Display the relevant hint
+	
+	# Start the timer to hide the hint after 5 seconds
+	HintTimer.start(5)
+
+# Function triggered after the HintTimer times out
+func _on_hint_timer_timeout():
+	HintLabel.visible = false  # Hide the hint label
+	$Panel/Question.visible = true  # Show the question panel again
+
+# Function to get the SQL syntax hint based on the current answer
+func show_hint_result(answer: String) -> String:
+	if answer.begins_with("SELECT"):
+		return "SELECT syntax:\nSELECT column1, column2 FROM table_name WHERE condition;"
+	elif answer.begins_with("INSERT"):
+		return "INSERT syntax:\nINSERT INTO table_name (column1, column2, ...) VALUES (value1, value2, ...);"
+	elif answer.begins_with("UPDATE"):
+		return "UPDATE syntax:\nUPDATE table_name SET column1 = value1 WHERE condition;"
+	elif answer.begins_with("DELETE"):
+		return "DELETE syntax:\nDELETE FROM table_name WHERE condition;"
+	elif answer.begins_with("MAX"):
+		return "Aggregation function (MAX):\nSELECT MAX(column_name) FROM table_name;"
+	else:
+		return "No specific hint available for this query."
 
 # Function to show an error message
 func show_error_message(message: String):
@@ -143,4 +176,3 @@ func _on_timer_timeout():
 	# Only unpause the game if the star rating system is not active
 	if not is_star_rating_active:
 		get_tree().paused = false
-
