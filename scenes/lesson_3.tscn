@@ -9,17 +9,17 @@
 script = ExtResource("1_7q47h")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1452.0
-offset_bottom = 650.0
+offset_right = 1455.0
+offset_bottom = 662.0
 expand_mode = 2
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1325.0
-offset_top = 549.0
-offset_right = 1414.0
-offset_bottom = 634.0
+offset_left = 1327.0
+offset_top = 547.0
+offset_right = 1416.0
+offset_bottom = 632.0
 metadata/_edit_group_ = true
 
 [node name="next_page" type="Button" parent="Control"]
@@ -37,9 +37,9 @@ expand_icon = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = 28.0
-offset_top = 537.0
+offset_top = 547.0
 offset_right = 117.0
-offset_bottom = 622.0
+offset_bottom = 632.0
 metadata/_edit_group_ = true
 
 [node name="previous_page" type="Button" parent="Control2"]
@@ -56,10 +56,10 @@ expand_icon = true
 [node name="Control3" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1402.0
-offset_top = 34.0
-offset_right = 1442.0
-offset_bottom = 74.0
+offset_left = 1385.0
+offset_top = 25.0
+offset_right = 1425.0
+offset_bottom = 65.0
 
 [node name="exit" type="Button" parent="Control3"]
 layout_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bjp04gmxknuft"]
+[gd_scene load_steps=9 format=3 uid="uid://bjp04gmxknuft"]
 
 [ext_resource type="Script" path="res://scripts/stage 3.gd" id="1_emxnc"]
 [ext_resource type="Texture2D" uid="uid://l3swgx6x43kk" path="res://back.png" id="2_r8hsr"]
@@ -8,21 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://drtswid22bbo" path="res://Levels_img/img_S3 lvl4.png" id="6_xrh6e"]
 [ext_resource type="Texture2D" uid="uid://8rvieeinjw17" path="res://Levels_img/img_S3 lvl5.png" id="7_s20eu"]
 [ext_resource type="Texture2D" uid="uid://cawhejr4ljidh" path="res://Back Square Button.png" id="9_up3ji"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vcrof"]
-texture = ExtResource("3_qgpn3")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_753qp"]
-texture = ExtResource("4_u2snw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_et56b"]
-texture = ExtResource("5_yqvgi")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1oqxh"]
-texture = ExtResource("6_xrh6e")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f4dse"]
-texture = ExtResource("7_s20eu")
 
 [node name="stage3" type="Node"]
 script = ExtResource("1_emxnc")
@@ -50,33 +35,28 @@ text = "Stage - 3
 "
 metadata/_edit_lock_ = true
 
-[node name="Level1" type="Control" parent="."]
+[node name="Levels" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 235.0
+offset_bottom = 142.0
+
+[node name="level 1 button" type="Button" parent="Levels"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 214.0
 offset_top = 129.0
-offset_right = 449.0
-offset_bottom = 271.0
-
-[node name="Panel" type="Panel" parent="Level1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_right = 214.0
+offset_bottom = 129.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_vcrof")
-
-[node name="S3 lvl1" type="Button" parent="Level1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+icon = ExtResource("3_qgpn3")
 flat = true
+expand_icon = true
 
-[node name="Label" type="Label" parent="Level1"]
+[node name="Label" type="Label" parent="Levels/level 1 button"]
 layout_mode = 0
 offset_left = 45.0
 offset_top = 157.0
@@ -87,33 +67,22 @@ text = "Level-1"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Level2" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
+[node name="level 2 button" type="Button" parent="Levels"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 515.0
 offset_top = 130.0
-offset_right = 750.0
-offset_bottom = 272.0
-
-[node name="Panel" type="Panel" parent="Level2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_right = 515.0
+offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_753qp")
-
-[node name="S3 lvl2" type="Button" parent="Level2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+icon = ExtResource("4_u2snw")
 flat = true
+expand_icon = true
 
-[node name="Label" type="Label" parent="Level2"]
+[node name="Label" type="Label" parent="Levels/level 2 button"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -131,33 +100,22 @@ text = "Level-2"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Level3" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
+[node name="level 3 button" type="Button" parent="Levels"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 805.0
 offset_top = 136.0
-offset_right = 1040.0
-offset_bottom = 278.0
-
-[node name="Panel" type="Panel" parent="Level3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_right = 805.0
+offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_et56b")
-
-[node name="S3 lvl3" type="Button" parent="Level3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+icon = ExtResource("5_yqvgi")
 flat = true
+expand_icon = true
 
-[node name="Label" type="Label" parent="Level3"]
+[node name="Label" type="Label" parent="Levels/level 3 button"]
 layout_mode = 0
 offset_left = 53.0
 offset_top = 144.0
@@ -169,33 +127,22 @@ text = "Level-3
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Level4" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
+[node name="level 4 button" type="Button" parent="Levels"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 361.0
 offset_top = 364.0
-offset_right = 596.0
-offset_bottom = 506.0
-
-[node name="Panel" type="Panel" parent="Level4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_right = 361.0
+offset_bottom = 364.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_1oqxh")
-
-[node name="S3 lvl4" type="Button" parent="Level4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+icon = ExtResource("6_xrh6e")
 flat = true
+expand_icon = true
 
-[node name="Label" type="Label" parent="Level4"]
+[node name="Label" type="Label" parent="Levels/level 4 button"]
 layout_mode = 0
 offset_left = 53.0
 offset_top = 144.0
@@ -207,33 +154,23 @@ text = "Level-4
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Level5" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
+[node name="level 5 button" type="Button" parent="Levels"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 720.0
 offset_top = 360.0
-offset_right = 955.0
-offset_bottom = 502.0
-
-[node name="Panel" type="Panel" parent="Level5"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_right = 720.0
+offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_f4dse")
-
-[node name="S3 lvl5" type="Button" parent="Level5"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+icon = ExtResource("7_s20eu")
 flat = true
+expand_icon = true
 
-[node name="Label" type="Label" parent="Level5"]
+[node name="Label" type="Label" parent="Levels/level 5 button"]
 layout_mode = 0
 offset_left = 53.0
 offset_top = 144.0
@@ -266,9 +203,4 @@ icon = ExtResource("9_up3ji")
 flat = true
 expand_icon = true
 
-[connection signal="pressed" from="Level1/S3 lvl1" to="." method="_on_s_3__lvl_1_pressed"]
-[connection signal="pressed" from="Level2/S3 lvl2" to="." method="_on_s_3_lvl_2_pressed"]
-[connection signal="pressed" from="Level3/S3 lvl3" to="." method="_on_s_3_lvl_3_pressed"]
-[connection signal="pressed" from="Level4/S3 lvl4" to="." method="_on_s_3_lvl_4_pressed"]
-[connection signal="pressed" from="Level5/S3 lvl5" to="." method="_on_s_3_lvl_5_pressed"]
 [connection signal="pressed" from="Control2/back" to="." method="_on_back_pressed"]

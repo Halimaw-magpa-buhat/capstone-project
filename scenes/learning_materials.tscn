@@ -1,19 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://c75a43dyh58d"]
+[gd_scene load_steps=7 format=3 uid="uid://c75a43dyh58d"]
 
 [ext_resource type="Script" path="res://scripts/learning_materials.gd" id="1_u0ab6"]
 [ext_resource type="Texture2D" uid="uid://l3swgx6x43kk" path="res://back.png" id="2_hcahj"]
-[ext_resource type="Texture2D" uid="uid://dw2hw8u0ij764" path="res://Learning Materials/lesson1.png" id="3_wt34f"]
-[ext_resource type="Texture2D" uid="uid://bh7xnskkyrtkn" path="res://Learning Materials/lesson2.png" id="4_sux5t"]
-[ext_resource type="Texture2D" uid="uid://bk88wdmq4xc7l" path="res://Learning Materials/lesson3.png" id="5_en8kx"]
+[ext_resource type="Texture2D" uid="uid://pssrf5mooewg" path="res://cp.png" id="3_s7x44"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3isa"]
-texture = ExtResource("3_wt34f")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ja0k7"]
+texture = ExtResource("3_s7x44")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ar44q"]
-texture = ExtResource("4_sux5t")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w0hvt"]
+texture = ExtResource("3_s7x44")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cqqwx"]
-texture = ExtResource("5_en8kx")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bsadj"]
+texture = ExtResource("3_s7x44")
 
 [node name="Learning Materials" type="Node"]
 script = ExtResource("1_u0ab6")
@@ -56,7 +54,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_v3isa")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ja0k7")
 
 [node name="lesson1" type="Button" parent="Lesson1"]
 layout_mode = 1
@@ -94,7 +92,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_ar44q")
+theme_override_styles/panel = SubResource("StyleBoxTexture_w0hvt")
 
 [node name="lesson2" type="Button" parent="lesson2"]
 layout_mode = 1
@@ -138,7 +136,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_cqqwx")
+theme_override_styles/panel = SubResource("StyleBoxTexture_bsadj")
 
 [node name="lesson3" type="Button" parent="Level3"]
 layout_mode = 1

@@ -82,6 +82,7 @@ offset_right = 300.0
 offset_bottom = 528.0
 
 [node name="stage button" type="Button" parent="Panel/Control4"]
+process_mode = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,7 +101,7 @@ offset_top = 452.0
 offset_right = 490.0
 offset_bottom = 538.0
 
-[node name="next lvl" type="Button" parent="Panel/Control3"]
+[node name="nextlvl" type="Button" parent="Panel/Control3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,7 +120,7 @@ offset_top = 442.0
 offset_right = 120.0
 offset_bottom = 528.0
 
-[node name="previoslvl" type="Button" parent="Panel/Control2"]
+[node name="previouslvl" type="Button" parent="Panel/Control2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,4 +137,5 @@ offset_top = -73.5
 offset_bottom = 73.5
 
 [connection signal="pressed" from="Panel/Control4/stage button" to="." method="_on_stage_button_pressed"]
-[connection signal="pressed" from="Panel/Control3/next lvl" to="." method="_on_next_lvl_pressed"]
+[connection signal="pressed" from="Panel/Control3/nextlvl" to="." method="_on_next_lvl_pressed"]
+[connection signal="pressed" from="Panel/Control2/previouslvl" to="." method="_on_previouslvl_pressed"]
