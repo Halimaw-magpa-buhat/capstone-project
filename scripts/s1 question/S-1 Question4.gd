@@ -4,51 +4,38 @@ extends Control
 @onready var CorrectLabel = $Panel/CorrectLabel
 @onready var WrongLabel = $Panel/WrongLabel
 @onready var timer = $Timer  
+@onready var HintLabel = $Panel/HintLabel  # Label to display the hint
+@onready var HintTimer = $Panel/HintLabel/Timer  # Timer inside the HintLabel node
 
 signal starChanged
 
 var questions = [
 	{
-		"question": "Add James Perez to the 'Employees' table.",
-		"answer": "INSERT INTO Employees (first_name, last_name) VALUES ('James', 'Perez');"
+		"question": "Find all unique job titles from the Employees table.",
+		"answer": "SELECT DISTINCT job_title FROM Employees;"
 	},
 	{
-		"question": "Insert a new record into the 'Orders' table with a customer_id 0936.",
-		"answer": "INSERT INTO Orders (customer_id) VALUES (0936);"
+		"question": "Retrieve employee names and salaries, but give the name column an alias of 'Employee Name' and the salary column an alias of 'Monthly Salary'.",
+		"answer": "SELECT name AS 'Employee Name', salary AS 'Monthly Salary' FROM Employees;"
 	},
 	{
-		"question": "Change the job_title to 'Senior Developer' for the employee with 'employee_id' 76 in the 'Employees' table.",
-		"answer": "UPDATE Employees SET job_title = 'Senior Developer' WHERE employee_id = 76;"
+		"question": "Retrieve all employee names in alphabetical order.",
+		"answer": "SELECT employee_name FROM Employees ORDER BY employee_name ASC;"
 	},
 	{
-		"question": "Delete all records from the 'Products' table without removing the table itself.",
-		"answer": "DELETE FROM Products;"
+		"question": "Select employees whose salary is greater than 50,000.",
+		"answer": "SELECT employee_name, salary FROM Employees WHERE salary > 50000;"
 	},
 	{
-		"question": "Change the status to 'Active' for all users in the 'Users' table.",
-		"answer": "UPDATE Users SET status = 'Active';"
+		"question": "How do you select employees who work in the 'Sales' department and have a salary greater than 50,000?",
+		"answer": "SELECT * FROM Employees WHERE Department = 'Sales' AND Salary > 50000;"
 	},
 	{
-		"question": "Replace 'Old Address' with 'New Address' in the address column of the 'Customers' table.",
-		"answer": "UPDATE Customers SET address = 'New Address' WHERE address = 'Old Address';"
-	},
-	{
-		"question": "Delete all orders from the 'Orders' table where status is 'Cancelled'.",
-		"answer": "DELETE FROM Orders WHERE status = 'Cancelled';"
-	},
-	{
-		"question": "Remove the customer with customer_id 3 from the 'Customers' table.",
-		"answer": "DELETE FROM Customers WHERE customer_id = 3;"
-	},
-	{
-		"question": "Insert the username and email from the 'Old_Users' table into the 'Users' table where status is 'Active'.",
-		"answer": "INSERT INTO Users (username, email) SELECT username, email FROM Old_Users WHERE status = 'Active';"
-	},
-	{
-		"question": "Update the first_name to 'Jane' and last_name to 'Gomez' for the employee with employee_id 3 in the 'Employees' table.",
-		"answer": "UPDATE Employees SET first_name = 'Jane', last_name = 'Gomez' WHERE employee_id = 3;"
+		"question": "How do you select employees who work in either the 'HR' department or have a salary greater than $70,000?",
+		"answer": "SELECT * FROM Employees WHERE Department = 'HR' OR salary > 70000;"
 	}
 ]
+
 
 var current_question = {}
 var current_answer = ""
@@ -70,6 +57,8 @@ func _ready():
 	# Connect the timer's timeout signal to a function
 	timer.timeout.connect(_on_timer_timeout)
 	timer.one_shot = true  # Ensure it's a one-shot timer (runs once then stops)
+
+	HintTimer.timeout.connect(_on_hint_timer_timeout)  # Connect the HintTimer timeout signal
 
 # Function to trigger star rating and keep the game paused
 func trigger_star_rating():
@@ -119,10 +108,42 @@ func show_question(fruit_id: int):
 	if not is_star_rating_active:
 		get_tree().paused = true
 
-
 # Function to clear the LineEdit text
 func clear_input():
 	$Panel/LineEdit.text = ""
+
+# Function to display the hint with SQL syntax based on the current question
+func _on_hint_pressed():
+	# Hide the question label and display the hint
+	$Panel/Question.visible = false  # Hide the question label
+	HintLabel.visible = true
+	HintLabel.text = show_hint_result(current_answer)  # Display the relevant hint
+	
+	# Start the timer to hide the hint after 5 seconds
+	HintTimer.start(5)
+
+# Function triggered after the HintTimer times out
+func _on_hint_timer_timeout():
+	HintLabel.visible = false  # Hide the hint label
+	$Panel/Question.visible = true  # Show the question panel again
+
+# Function to get the hint based on the current answer
+func show_hint_result(answer: String) -> String:
+	match answer:
+		"SELECT DISTINCT job_title FROM Employees;":
+			return "Hint: Use DISTINCT to ensure the results contain only unique values."
+		"SELECT name AS 'Employee Name', salary AS 'Monthly Salary' FROM Employees;":
+			return "Hint: Use the 'AS' keyword to give columns aliases."
+		"SELECT employee_name FROM Employees ORDER BY employee_name ASC;":
+			return "Hint: You can sort the results alphabetically using 'ORDER BY'."
+		"SELECT employee_name, salary FROM Employees WHERE salary > 50000;":
+			return "Hint: Use a condition to filter results based on salary with '>' operator."
+		"SELECT * FROM Employees WHERE Department = 'Sales' AND Salary > 50000;":
+			return "Hint: Combine multiple conditions using 'AND' to filter by department and salary."
+		"SELECT * FROM Employees WHERE Department = 'HR' OR salary > 70000;":
+			return "Hint: Use 'OR' to combine conditions, selecting either department or salary."
+		_:
+			return "No specific hint available for this query."
 
 # Function to show an error message
 func show_error_message(message: String):
@@ -143,4 +164,3 @@ func _on_timer_timeout():
 	# Only unpause the game if the star rating system is not active
 	if not is_star_rating_active:
 		get_tree().paused = false
-

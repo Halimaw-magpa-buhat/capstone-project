@@ -4,49 +4,35 @@ extends Control
 @onready var CorrectLabel = $Panel/CorrectLabel
 @onready var WrongLabel = $Panel/WrongLabel
 @onready var timer = $Timer  
+@onready var HintLabel = $Panel/HintLabel  # Label to display the hint
+@onready var HintTimer = $Panel/HintLabel/Timer  # Timer inside the HintLabel node
 
 signal starChanged
 
 var questions = [
 	{
-		"question": "Add James Perez to the 'Employees' table.",
-		"answer": "INSERT INTO Employees (first_name, last_name) VALUES ('James', 'Perez');"
+		"question": "Find the average salary of all employees.",
+		"answer": "SELECT AVG(salary) FROM Employees;"
 	},
 	{
-		"question": "Insert a new record into the 'Orders' table with a customer_id 0936.",
-		"answer": "INSERT INTO Orders (customer_id) VALUES (0936);"
+		"question": "Retrieve the names and salaries of employees whose salaries are between $40,000 and $60,000.",
+		"answer": "SELECT employee_name, salary FROM Employees WHERE salary BETWEEN 40000 AND 60000;"
 	},
 	{
-		"question": "Change the job_title to 'Senior Developer' for the employee with 'employee_id' 76 in the 'Employees' table.",
-		"answer": "UPDATE Employees SET job_title = 'Senior Developer' WHERE employee_id = 76;"
+		"question": "Get the minimum and maximum age of employees.",
+		"answer": "SELECT MIN(age), MAX(age) FROM Employees;"
 	},
 	{
-		"question": "Delete all records from the 'Products' table without removing the table itself.",
-		"answer": "DELETE FROM Products;"
+		"question": "Retrieve all employee names that start with the letter 'A'.",
+		"answer": "SELECT employee_name FROM Employees WHERE name LIKE 'A%';"
 	},
 	{
-		"question": "Change the status to 'Active' for all users in the 'Users' table.",
-		"answer": "UPDATE Users SET status = 'Active';"
+		"question": "Write a SQL query to select all employees whose salary is not between 40,000 and 60,000.",
+		"answer": "SELECT * FROM Employees WHERE Salary NOT BETWEEN 40000 AND 60000;"
 	},
 	{
-		"question": "Replace 'Old Address' with 'New Address' in the address column of the 'Customers' table.",
-		"answer": "UPDATE Customers SET address = 'New Address' WHERE address = 'Old Address';"
-	},
-	{
-		"question": "Delete all orders from the 'Orders' table where status is 'Cancelled'.",
-		"answer": "DELETE FROM Orders WHERE status = 'Cancelled';"
-	},
-	{
-		"question": "Remove the customer with customer_id 3 from the 'Customers' table.",
-		"answer": "DELETE FROM Customers WHERE customer_id = 3;"
-	},
-	{
-		"question": "Insert the username and email from the 'Old_Users' table into the 'Users' table where status is 'Active'.",
-		"answer": "INSERT INTO Users (username, email) SELECT username, email FROM Old_Users WHERE status = 'Active';"
-	},
-	{
-		"question": "Update the first_name to 'Jane' and last_name to 'Gomez' for the employee with employee_id 3 in the 'Employees' table.",
-		"answer": "UPDATE Employees SET first_name = 'Jane', last_name = 'Gomez' WHERE employee_id = 3;"
+		"question": "Write a query to select all orders that are not from customer ID 100.",
+		"answer": "SELECT * FROM Orders WHERE customer_id NOT IN (100);"
 	}
 ]
 
@@ -70,6 +56,8 @@ func _ready():
 	# Connect the timer's timeout signal to a function
 	timer.timeout.connect(_on_timer_timeout)
 	timer.one_shot = true  # Ensure it's a one-shot timer (runs once then stops)
+
+	HintTimer.timeout.connect(_on_hint_timer_timeout)  # Connect the HintTimer timeout signal
 
 # Function to trigger star rating and keep the game paused
 func trigger_star_rating():
@@ -119,10 +107,43 @@ func show_question(fruit_id: int):
 	if not is_star_rating_active:
 		get_tree().paused = true
 
-
 # Function to clear the LineEdit text
 func clear_input():
 	$Panel/LineEdit.text = ""
+
+# Function to display the hint with SQL syntax based on the current question
+func _on_hint_pressed():
+	# Hide the question label and display the hint
+	$Panel/Question.visible = false  # Hide the question label
+	HintLabel.visible = true
+	HintLabel.text = show_hint_result(current_answer)  # Display the relevant hint
+	
+	# Start the timer to hide the hint after 5 seconds
+	HintTimer.start(5)
+
+# Function triggered after the HintTimer times out
+func _on_hint_timer_timeout():
+	HintLabel.visible = false  # Hide the hint label
+	$Panel/Question.visible = true  # Show the question panel again
+
+# Function to get the hint based on the current answer
+func show_hint_result(answer: String) -> String:
+	match answer:
+		"SELECT AVG(salary) FROM Employees;":
+			return "Hint: Use an aggregation function like AVG to calculate the average."
+		"SELECT employee_name, salary FROM Employees WHERE salary BETWEEN 40000 AND 60000;":
+			return "Hint: Use 'BETWEEN' to filter a range of values."
+		"SELECT MIN(age), MAX(age) FROM Employees;":
+			return "Hint: You can use 'MIN' and 'MAX' functions to get the smallest and largest values."
+		"SELECT employee_name FROM Employees WHERE name LIKE 'A%';":
+			return "Hint: Use the 'LIKE' operator with a pattern to find names starting with a specific letter."
+		"SELECT * FROM Employees WHERE Salary NOT BETWEEN 40000 AND 60000;":
+			return "Hint: Use 'NOT BETWEEN' to exclude a specific range of values."
+		"SELECT * FROM Orders WHERE customer_id NOT IN (100);":
+			return "Hint: Use 'NOT IN' to exclude specific values from the results."
+		_:
+			return "No specific hint available for this query."
+
 
 # Function to show an error message
 func show_error_message(message: String):
@@ -143,4 +164,3 @@ func _on_timer_timeout():
 	# Only unpause the game if the star rating system is not active
 	if not is_star_rating_active:
 		get_tree().paused = false
-

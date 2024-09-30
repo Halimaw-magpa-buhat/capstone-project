@@ -17,7 +17,7 @@ var start_position : Vector2
 @onready var currentHealth: int = maxHealth
 
 # Damage cooldown to prevent multiple hits
-var damage_cooldown = 0.5
+var damage_cooldown = 0.1
 var damage_timer = 0.0
 
 func _ready():

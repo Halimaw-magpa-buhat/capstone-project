@@ -11,44 +11,28 @@ signal starChanged
 
 var questions = [
 	{
-		"question": "Add James Perez to the 'Employees' table.",
-		"answer": "INSERT INTO Employees (first_name, last_name) VALUES ('James', 'Perez');"
+		"question": "Write an SQL query to find all employees from “Employees” table.",
+		"answer": "SELECT * FROM Employees;"
 	},
 	{
-		"question": "Insert a new record into the 'Orders' table with a customer_id 0936.",
-		"answer": "INSERT INTO Orders (customer_id) VALUES (0936);"
+		"question": "Write an SQL query to find the “first_name, and last_name’ from “Customers” table.",
+		"answer": "SELECT first_name, last_name FROM Employees;"
 	},
 	{
-		"question": "Change the job_title to 'Senior Developer' for the employee with 'employee_id' 76 in the 'Employees' table.",
-		"answer": "UPDATE Employees SET job_title = 'Senior Developer' WHERE employee_id = 76;"
+		"question": "You want to compile a list of email addresses of all users from the users table. How would you retrieve this?",
+		"answer": "SELECT email FROM Users;"
 	},
 	{
-		"question": "Delete all records from the 'Products' table without removing the table itself.",
-		"answer": "DELETE FROM Products;"
+		"question": "You have a “Subscriptions” table. How would you retrieve the names of all customers?",
+		"answer": "SELECT customer_name FROM Subscriptions;"
 	},
 	{
-		"question": "Change the status to 'Active' for all users in the 'Users' table.",
-		"answer": "UPDATE Users SET status = 'Active';"
+		"question": "How would you retrieve all the data from a table named “Orders”?",
+		"answer": "SELECT * FROM Orders;"
 	},
 	{
-		"question": "Replace 'Old Address' with 'New Address' in the address column of the 'Customers' table.",
-		"answer": "UPDATE Customers SET address = 'New Address' WHERE address = 'Old Address';"
-	},
-	{
-		"question": "Delete all orders from the 'Orders' table where status is 'Cancelled'.",
-		"answer": "DELETE FROM Orders WHERE status = 'Cancelled';"
-	},
-	{
-		"question": "Remove the customer with customer_id 3 from the 'Customers' table.",
-		"answer": "DELETE FROM Customers WHERE customer_id = 3;"
-	},
-	{
-		"question": "Insert the username and email from the 'Old_Users' table into the 'Users' table where status is 'Active'.",
-		"answer": "INSERT INTO Users (username, email) SELECT username, email FROM Old_Users WHERE status = 'Active';"
-	},
-	{
-		"question": "Update the first_name to 'Jane' and last_name to 'Gomez' for the employee with employee_id 3 in the 'Employees' table.",
-		"answer": "UPDATE Employees SET first_name = 'Jane', last_name = 'Gomez' WHERE employee_id = 3;"
+		"question": "Write an SQL query to retrieve the product_name and price columns from a table named “Products.”",
+		"answer": "SELECT product_name, price FROM Products;"
 	}
 ]
 
@@ -66,7 +50,6 @@ var is_star_rating_active = false
 
 func _ready():
 	self.visible = false
-	$Panel/Send.pressed.connect(_on_send_pressed)
 	starChanged.connect(get_node("/root/Node/StarRatingSystem/StarRatingControl").star_rating_system)
 
 	# Connect the timer's timeout signal to a function
@@ -142,20 +125,23 @@ func _on_hint_timer_timeout():
 	HintLabel.visible = false  # Hide the hint label
 	$Panel/Question.visible = true  # Show the question panel again
 
-# Function to get the SQL syntax hint based on the current answer
+# Function to get the SQL syntax hint based on the current question
 func show_hint_result(answer: String) -> String:
-	if answer.begins_with("SELECT"):
-		return "SELECT syntax:\nSELECT column1, column2 FROM table_name WHERE condition;"
-	elif answer.begins_with("INSERT"):
-		return "INSERT syntax:\nINSERT INTO table_name (column1, column2, ...) VALUES (value1, value2, ...);"
-	elif answer.begins_with("UPDATE"):
-		return "UPDATE syntax:\nUPDATE table_name SET column1 = value1 WHERE condition;"
-	elif answer.begins_with("DELETE"):
-		return "DELETE syntax:\nDELETE FROM table_name WHERE condition;"
-	elif answer.begins_with("MAX"):
-		return "Aggregation function (MAX):\nSELECT MAX(column_name) FROM table_name;"
-	else:
-		return "No specific hint available for this query."
+	match answer:
+		"SELECT * FROM Employees;":
+			return "Hint: Use 'SELECT *' to retrieve all columns from the Employees table."
+		"SELECT first_name, last_name FROM Employees;":
+			return "Hint: Specify the columns (first_name, last_name) in the SELECT clause."
+		"SELECT email FROM Users;":
+			return "Hint: Use 'SELECT' with the 'email' column from the Users table."
+		"SELECT customer_name FROM Subscriptions;":
+			return "Hint: Use 'SELECT customer_name' from the Subscriptions table."
+		"SELECT * FROM Orders;":
+			return "Hint: Use 'SELECT *' to retrieve all columns from the Orders table."
+		"SELECT product_name, price FROM Products;":
+			return "Hint: Use 'SELECT product_name, price' from the Products table."
+		_:
+			return "No specific hint available for this query."
 
 # Function to show an error message
 func show_error_message(message: String):

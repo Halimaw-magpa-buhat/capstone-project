@@ -3,6 +3,7 @@ extends Node
 # Called when the scene is loaded
 func _ready():
 	_update_level_buttons()
+	
 
 # Update the level buttons based on the unlock status
 func _update_level_buttons():
@@ -25,7 +26,7 @@ func _extract_stage_level_from_name(button_name: String) -> Array:
 	var level_start = button_name.find("level ") + 6
 	var button_end = button_name.find(" button")
 	var level = button_name.substr(level_start, button_end - level_start).to_int()
-	return [3, level]  # This is Stage 3
+	return [1, level]  # This is Stage 1
 
 # Handle the level button pressed signal
 func change_level(lvl_no: String):
@@ -46,5 +47,14 @@ func _load_level(stage: int, level: int):
 func _show_locked_message():
 	print("This level is locked.")
 
-func _on_back_pressed():
+# This function gets called when a level is cleared
+func on_level_cleared(stage: int, level: int):
+	if stage == 0 and level == 4:  # If Stage 1 Level 5 is cleared
+		ProgressManager.unlock_next_level(0, 4)  # Unlock Stage 2 Level 1
+
+# Handle navigation button pressed functions
+func _on_next_pressed():
 	get_tree().change_scene_to_file("res://scenes/stage2.tscn")
+
+func _on_main_menu_pressed():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

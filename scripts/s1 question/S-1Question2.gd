@@ -4,49 +4,35 @@ extends Control
 @onready var CorrectLabel = $Panel/CorrectLabel
 @onready var WrongLabel = $Panel/WrongLabel
 @onready var timer = $Timer  
+@onready var HintLabel = $Panel/HintLabel  # Label to display the hint
+@onready var HintTimer = $Panel/HintLabel/Timer  # Timer inside the HintLabel node
 
 signal starChanged
 
 var questions = [
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find the names of all employees who work in the 'Marketing' department.",
-		"answer": "SELECT first_name, last_name FROM Employees WHERE department = 'Marketing';"
+		"question": " How would you retrieve every row and column from a table named “Students”?",
+		"answer": "SELECT * FROM Students;"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find the first_name, last_name, and salary of employees who earn more than $50,000.",
-		"answer": "SELECT first_name, last_name, salary FROM Employees WHERE salary > 50000;"
+		"question": "How would you retrieve the title and author columns from a table named books?",
+		"answer": "SELECT title, author FROM Books;"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find the highest salary in the Employees table.",
-		"answer": "SELECT MAX(salary) FROM Employees;"
+		"question": "Retrieve all unique values in the department column from the employees table.",
+		"answer": "SELECT DISTINCT department FROM Employees;"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to list all employees' first_name and last_name, sorted by last_name in alphabetical order.",
-		"answer": "SELECT first_name, last_name FROM Employees ORDER BY last_name ASC;"
+		"question": "Find all entries in the teachers table.",
+		"answer": "SELECT * FROM Teachers;"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find all employees with the last name 'Smith'.",
-		"answer": "SELECT first_name, last_name FROM Employees WHERE last_name = 'Smith';"
+		"question": "List all unique cities from the addresses table.",
+		"answer": "SELECT DISTINCT city FROM Addresses;"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to update the salary of the employee with employee_id 10 to $55,000.",
-		"answer": "UPDATE Employees SET salary = 55000 WHERE employee_id = 10;"
-	},
-	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to delete all employees who work in the 'HR' department.",
-		"answer": "DELETE FROM Employees WHERE department = 'HR';"
-	},
-	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to insert a new employee into the Employees table with the following details: employee_id = 101, first_name = 'John', last_name = 'Doe', department = 'IT', salary = 70000.",
-		"answer": "INSERT INTO Employees (employee_id, first_name, last_name, department, salary) VALUES (101, 'John', 'Doe', 'IT', 70000);"
-	},
-	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find employees who work in either the 'Finance' or 'IT' departments.",
-		"answer": "SELECT first_name, last_name, department FROM Employees WHERE department IN ('Finance', 'IT');"
-	},
-	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to set the salary of all employees with a NULL salary to $40,000.",
-		"answer": "UPDATE Employees SET salary = 40000 WHERE salary IS NULL;"
+		"question": "Write an SQL query to retrieve distinct country values from the “Customers” table.",
+		"answer": "SELECT DISTINCT country FROM Customers;"
 	}
 ]
 
@@ -70,6 +56,8 @@ func _ready():
 	# Connect the timer's timeout signal to a function
 	timer.timeout.connect(_on_timer_timeout)
 	timer.one_shot = true  # Ensure it's a one-shot timer (runs once then stops)
+
+	HintTimer.timeout.connect(_on_hint_timer_timeout)  # Connect the HintTimer timeout signal
 
 # Function to trigger star rating and keep the game paused
 func trigger_star_rating():
@@ -119,10 +107,45 @@ func show_question(fruit_id: int):
 	if not is_star_rating_active:
 		get_tree().paused = true
 
-
 # Function to clear the LineEdit text
 func clear_input():
 	$Panel/LineEdit.text = ""
+
+# Function to display the hint with SQL syntax based on the current question
+func _on_hint_pressed():
+	# Hide the question label and display the hint
+	$Panel/Question.visible = false  # Hide the question label
+	HintLabel.visible = true
+	HintLabel.text = show_hint_result(current_answer)  # Display the relevant hint
+	
+	# Start the timer to hide the hint after 5 seconds
+	HintTimer.start(5)
+
+# Function triggered after the HintTimer times out
+func _on_hint_timer_timeout():
+	HintLabel.visible = false  # Hide the hint label
+	$Panel/Question.visible = true  # Show the question panel again
+
+# Function to get the SQL syntax hint based on the current answer
+# Function to get the SQL syntax hint based on the current answer
+func show_hint_result(answer: String) -> String:
+	match answer:
+		"SELECT * FROM Students;":
+			return "Hint: Use '*' to select all rows and columns from a table.;"
+		"SELECT title, author FROM Books;":
+			return "Hint: Specify column names to retrieve specific columns."
+		"SELECT DISTINCT department FROM Employees;":
+			return "Hint: Use DISTINCT to retrieve unique values from a column."
+		"SELECT * FROM Teachers;":
+			return "Hint: Use '*' to select all entries from the 'Teachers' table."
+		"SELECT DISTINCT city FROM Addresses;":
+			return "Hint: Retrieve distinct city values from the 'Addresses' table."
+		"SELECT DISTINCT country FROM Customers;":
+			return "Hint: Retrieve distinct country values from the 'Customers' table."
+		_:
+			return "No specific hint available for this query."  # Default case to avoid missing return value
+
+
 
 # Function to show an error message
 func show_error_message(message: String):
@@ -143,4 +166,3 @@ func _on_timer_timeout():
 	# Only unpause the game if the star rating system is not active
 	if not is_star_rating_active:
 		get_tree().paused = false
-

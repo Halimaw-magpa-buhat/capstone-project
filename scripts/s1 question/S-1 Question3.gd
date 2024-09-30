@@ -4,49 +4,35 @@ extends Control
 @onready var CorrectLabel = $Panel/CorrectLabel
 @onready var WrongLabel = $Panel/WrongLabel
 @onready var timer = $Timer  
+@onready var HintLabel = $Panel/HintLabel  # Label to display the hint
+@onready var HintTimer = $Panel/HintLabel/Timer  # Timer inside the HintLabel node
 
 signal starChanged
 
 var questions = [
 	{
-		"question": "Add James Perez to the 'Employees' table.",
-		"answer": "INSERT INTO Employees (first_name, last_name) VALUES ('James', 'Perez');"
+		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find the names of all employees who work in the Marketing department.",
+		"answer": "SELECT first_name, last_name FROM Employees WHERE department = 'Marketing';"
 	},
 	{
-		"question": "Insert a new record into the 'Orders' table with a customer_id 0936.",
-		"answer": "INSERT INTO Orders (customer_id) VALUES (0936);"
+		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find the first_name, last_name, and salary of employees who earn more than $50,000.",
+		"answer": "SELECT first_name, last_name, salary FROM Employees WHERE salary > 50000;"
 	},
 	{
-		"question": "Change the job_title to 'Senior Developer' for the employee with 'employee_id' 76 in the 'Employees' table.",
-		"answer": "UPDATE Employees SET job_title = 'Senior Developer' WHERE employee_id = 76;"
+		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find the highest salary in the Employees table.",
+		"answer": "SELECT MAX(salary) FROM Employees;"
 	},
 	{
-		"question": "Delete all records from the 'Products' table without removing the table itself.",
-		"answer": "DELETE FROM Products;"
+		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to list all employees' first_name and last_name, sorted by last_name in alphabetical order.",
+		"answer": "SELECT first_name, last_name FROM Employees ORDER BY last_name ASC;"
 	},
 	{
-		"question": "Change the status to 'Active' for all users in the 'Users' table.",
-		"answer": "UPDATE Users SET status = 'Active';"
+		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find all employees with the last name Smith.",
+		"answer": "SELECT first_name, last_name FROM Employees WHERE last_name = 'Smith';"
 	},
 	{
-		"question": "Replace 'Old Address' with 'New Address' in the address column of the 'Customers' table.",
-		"answer": "UPDATE Customers SET address = 'New Address' WHERE address = 'Old Address';"
-	},
-	{
-		"question": "Delete all orders from the 'Orders' table where status is 'Cancelled'.",
-		"answer": "DELETE FROM Orders WHERE status = 'Cancelled';"
-	},
-	{
-		"question": "Remove the customer with customer_id 3 from the 'Customers' table.",
-		"answer": "DELETE FROM Customers WHERE customer_id = 3;"
-	},
-	{
-		"question": "Insert the username and email from the 'Old_Users' table into the 'Users' table where status is 'Active'.",
-		"answer": "INSERT INTO Users (username, email) SELECT username, email FROM Old_Users WHERE status = 'Active';"
-	},
-	{
-		"question": "Update the first_name to 'Jane' and last_name to 'Gomez' for the employee with employee_id 3 in the 'Employees' table.",
-		"answer": "UPDATE Employees SET first_name = 'Jane', last_name = 'Gomez' WHERE employee_id = 3;"
+		"question": "Write an SQL query to retrieve all columns from the Orders table where the order_status is 'Shipped'.",
+		"answer": "SELECT * FROM Orders WHERE order_status = 'Shipped';"
 	}
 ]
 
@@ -70,6 +56,8 @@ func _ready():
 	# Connect the timer's timeout signal to a function
 	timer.timeout.connect(_on_timer_timeout)
 	timer.one_shot = true  # Ensure it's a one-shot timer (runs once then stops)
+
+	HintTimer.timeout.connect(_on_hint_timer_timeout)  # Connect the HintTimer timeout signal
 
 # Function to trigger star rating and keep the game paused
 func trigger_star_rating():
@@ -119,10 +107,44 @@ func show_question(fruit_id: int):
 	if not is_star_rating_active:
 		get_tree().paused = true
 
-
 # Function to clear the LineEdit text
 func clear_input():
 	$Panel/LineEdit.text = ""
+
+# Function to display the hint with SQL syntax based on the current question
+func _on_hint_pressed():
+	# Hide the question label and display the hint
+	$Panel/Question.visible = false  # Hide the question label
+	HintLabel.visible = true
+	HintLabel.text = show_hint_result(current_answer)  # Display the relevant hint
+	
+	# Start the timer to hide the hint after 5 seconds
+	HintTimer.start(5)
+
+# Function triggered after the HintTimer times out
+func _on_hint_timer_timeout():
+	HintLabel.visible = false  # Hide the hint label
+	$Panel/Question.visible = true  # Show the question panel again
+
+# Function to get the hint based on the current answer
+func show_hint_result(answer: String) -> String:
+	match answer:
+		"SELECT first_name, last_name FROM Employees WHERE department = 'Marketing';":
+			return "Hint: You need to filter the results based on a specific department. Use 'WHERE' clause."
+		"SELECT first_name, last_name, salary FROM Employees WHERE salary > 50000;":
+			return "Hint: Use a condition to filter employees based on their salary. Use '>' for the condition."
+		"SELECT MAX(salary) FROM Employees;":
+			return "Hint: Use an aggregate function to find the highest salary. Use 'MAX()' to get the maximum value."
+		"SELECT first_name, last_name FROM Employees ORDER BY last_name ASC;":
+			return "Hint: You can sort the result using the 'ORDER BY' clause with 'ASC' for ascending order."
+		"SELECT first_name, last_name FROM Employees WHERE last_name = 'Smith';":
+			return "Hint: Use a condition to filter employees by last name. The 'WHERE' clause helps in filtering."
+		"SELECT * FROM Orders WHERE order_status = 'Shipped';":
+			return "Hint: You need to filter the orders based on their status. Use 'WHERE' clause with the status."
+		_:
+			return "No specific hint available for this query."
+
+
 
 # Function to show an error message
 func show_error_message(message: String):
@@ -143,4 +165,3 @@ func _on_timer_timeout():
 	# Only unpause the game if the star rating system is not active
 	if not is_star_rating_active:
 		get_tree().paused = false
-
