@@ -1,3 +1,5 @@
+# ProgressManager.gd
+
 extends Node
 
 # Array to store the unlock status for each level in each stage
@@ -26,5 +28,14 @@ func unlock_next_level(stage: int, level: int):
 func is_level_unlocked(stage: int, level: int) -> bool:
 	return level_unlocks[stage][level]
 
+# Function to reset the progress to Stage 1 Level 1
+func reset_progress():
+	current_stage = 0  # Reset to Stage 1
+	current_level = 0  # Reset to Level 1
+	print("Progress reset to Stage 1 Level 1")
 
-
+# Function to set the current stage and level when a level is selected
+func set_current_stage_and_level(stage: int, level: int):
+	current_stage = stage
+	current_level = level
+	print("Progress set to Stage %d Level %d" % [stage + 1, level + 1])

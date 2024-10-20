@@ -1,3 +1,5 @@
+# PauseMenu.gd
+
 extends Node
 
 var is_paused = false
@@ -31,7 +33,12 @@ func _on_quit_pressed():
 	get_tree().paused = false
 	GameManager.reset_fruits()  # Reset the collected fruit
 	
+	# Reset the current stage and level to Stage 1 Level 1
+	ProgressManager.reset_progress()
+
+	# Change the scene to Stage 1 Level 1 (adjust the path if needed)
 	get_tree().change_scene_to_file("res://scenes/stage1.tscn")
 	
+	# Update level buttons after quitting
 	if StarRatingSystem:
-		StarRatingSystem.update_level_buttons()  # Update buttons after quitting
+		StarRatingSystem.update_level_buttons()

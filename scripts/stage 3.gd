@@ -32,6 +32,10 @@ func change_level(lvl_no: String):
 	var stage_level = _extract_stage_level_from_name(lvl_no)
 	var stage = stage_level[0]
 	var level = stage_level[1]
+
+	# Update the ProgressManager with the current stage and level
+	ProgressManager.set_current_stage_and_level(stage - 1, level - 1)  # <-- This line was added
+
 	_load_level(stage - 1, level - 1)
 
 # Load the level scene if it is unlocked
@@ -46,5 +50,6 @@ func _load_level(stage: int, level: int):
 func _show_locked_message():
 	print("This level is locked.")
 
+# Handle the back button pressed
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://scenes/stage2.tscn")
