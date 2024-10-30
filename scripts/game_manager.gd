@@ -1,5 +1,6 @@
 extends Node
 
+
 # Dictionary to track collected fruits and answered questions
 var collected_fruits = []
 var answered_questions = {}
