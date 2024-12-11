@@ -1,6 +1,6 @@
-# Stage1.gd (or your stage script)
-
 extends Node
+
+@onready var starContainer = $StarRatingSystem/starContainer
 
 # Called when the scene is loaded
 func _ready():

@@ -11,28 +11,28 @@ signal starChanged
 
 var questions = [
 	{
-		"question": "Find all unique job titles from the Employees table.",
+		"question": "Find all unique job_title from the “Employees” table.",
 		"answer": "SELECT DISTINCT job_title FROM Employees;"
 	},
 	{
-		"question": "Retrieve employee names and salaries, but give the name column an alias of 'Employee Name' and the salary column an alias of 'Monthly Salary'.",
+		"question": "Retrieve employee names and salary, but give the name column an alias of 'Employee Name' and the salary column an alias of 'Monthly Salary'.",
 		"answer": "SELECT name AS 'Employee Name', salary AS 'Monthly Salary' FROM Employees;"
 	},
 	{
-		"question": "Retrieve all employee names in alphabetical order.",
+		"question": "Retrieve all employee_name in alphabetical order from “Employees” table.",
 		"answer": "SELECT employee_name FROM Employees ORDER BY employee_name ASC;"
 	},
 	{
-		"question": "Select employees whose salary is greater than 50,000.",
+		"question": "Select employees whose salary is greater than 50,000 from ‘Employees” table. Get the employee_name and salary columns.",
 		"answer": "SELECT employee_name, salary FROM Employees WHERE salary > 50000;"
 	},
 	{
-		"question": "How do you select employees who work in the 'Sales' department and have a salary greater than 50,000?",
-		"answer": "SELECT * FROM Employees WHERE Department = 'Sales' AND Salary > 50000;"
+		"question": "How do you select employees who work in the ‘Sales’ department and have a salary greater than 50,000 from ‘Employees’ table?",
+		"answer": "SELECT * FROM Employees WHERE department = 'Sales' AND salary > 50000;"
 	},
 	{
-		"question": "How do you select employees who work in either the 'HR' department or have a salary greater than $70,000?",
-		"answer": "SELECT * FROM Employees WHERE Department = 'HR' OR salary > 70000;"
+		"question": "How do you select employees who work in either the ‘HR’ department or have a salary greater than $70,000 from ‘Employees’ table?",
+		"answer": "SELECT * FROM Employees WHERE department = 'HR' OR salary > 70000;"
 	}
 ]
 
@@ -138,9 +138,9 @@ func show_hint_result(answer: String) -> String:
 			return "Hint: You can sort the results alphabetically using 'ORDER BY'."
 		"SELECT employee_name, salary FROM Employees WHERE salary > 50000;":
 			return "Hint: Use a condition to filter results based on salary with '>' operator."
-		"SELECT * FROM Employees WHERE Department = 'Sales' AND Salary > 50000;":
+		"SELECT * FROM Employees WHERE department = 'Sales' AND salary > 50000;":
 			return "Hint: Combine multiple conditions using 'AND' to filter by department and salary."
-		"SELECT * FROM Employees WHERE Department = 'HR' OR salary > 70000;":
+		"SELECT * FROM Employees WHERE department = 'HR' OR salary > 70000;":
 			return "Hint: Use 'OR' to combine conditions, selecting either department or salary."
 		_:
 			return "No specific hint available for this query."

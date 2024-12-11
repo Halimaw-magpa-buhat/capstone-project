@@ -11,23 +11,23 @@ signal starChanged
 
 var questions = [
 	{
-		"question": "You have two tables, 'Customers' and 'Orders'. The Customers table contains customer information, and the Orders table contains order details. You want to find the names of customers who have placed orders. Write an SQL query to retrieve the 'customer_name' and 'order_date' for customers who have placed orders. Use the 'customer_id' column to join the Customers and Orders tables.",
-		"answer": "SELECT Customers.customer_name, Orders.order_date FROM Customers INNER JOIN Orders ON Customers.customer_id = Orders.customer_id;"
+		"question": "You have two tables, “Customers” and “Orders”. The Customers table contains customer information, and the Orders table contains order details. You want to find the names of customers who have placed orders. Write an SQL query to retrieve the “customer_name” and “order_date” for customers who have placed orders. Use the “customer_id” column to join the Customers and Orders tables. (Include the complete table name).",
+		"answer": "SELECT Customers.customer_name, Orders.order_date FROM Customers JOIN Orders ON Customers.customer_id = Orders.customer_id;"
 	},
 	{
 		"question": "You have a 'Sales' table that records sales transactions with 'sale_amount'. Write a SQL query to calculate the total number of sales transactions using 'sale_id' and the total sales amount using 'sale_amount'. Ensure that the results are returned in a single row with columns labeled 'total_transactions' and 'total_sales'.",
 		"answer": "SELECT COUNT(sale_id) AS total_transactions, SUM(sale_amount) AS total_sales FROM Sales;"
 	},
 	{
-		"question": "You have a 'Customers' table that contains customer information. Write a SQL query to find all customers whose names contain the substring 'Smith'. Ensure that the results are sorted by 'customer_name' in ascending order.",
-		"answer": "SELECT * FROM Customers WHERE customer_name LIKE '%Smith%' ORDER BY customer_name ASC;"
+		"question": "You have a “Customers” table that contains customer information. Write a SQL query to find all customer_name whose names contain the substring ‘Smith’. Ensure that the results are sorted by “customer_name” in descending order. - change",
+		"answer": "SELECT * FROM Customers WHERE customer_name LIKE '%Smith%' ORDER BY customer_name DESC;"
 	},
 	{
-		"question": "Retrieve the 'employee_name' from the Employees table along with the 'department_name' from the Departments table. Use the 'department_id' column to join the Employees and Departments tables.",
-		"answer": "SELECT Employees.employee_name, Departments.department_name FROM Employees INNER JOIN Departments ON Employees.department_id = Departments.department_id;"
+		"question": "Retrieve the employee_name from the Employees table along with the department_name from the Departments table. Use the “department_id” column to join the Employees and Departments tables. (Include the complete table name)",
+		"answer": "SELECT Employees.employee_name, Departments.department_name FROM Employees JOIN Departments ON Employees.department_id = Departments.department_id;"
 	},
 	{
-		"question": "List all 'customer_name' from the Customers table and their 'order_id' from the Orders table, including customers who have not placed any orders and orders that have no corresponding customers. Use the 'customer_id' column to join the Customers and Orders tables.",
+		"question": "List all customer_name from the Customers table and their order_id from the Orders table, including customers who have not placed any orders and orders that have no corresponding customers. Use the “customer_id” column to join the Customers and Orders tables. (Include the complete table name)",
 		"answer": "SELECT Customers.customer_name, Orders.order_id FROM Customers FULL OUTER JOIN Orders ON Customers.customer_id = Orders.customer_id;"
 	},
 	{
@@ -129,14 +129,14 @@ func _on_hint_timer_timeout():
 # Function to get the hint based on the current answer
 func show_hint_result(answer: String) -> String:
 	match answer:
-		"SELECT Customers.customer_name, Orders.order_date FROM Customers INNER JOIN Orders ON Customers.customer_id = Orders.customer_id;":
-			return "Hint: Use 'INNER JOIN' to combine rows from two tables based on a related column."
+		"SELECT Customers.customer_name, Orders.order_date FROM Customers JOIN Orders ON Customers.customer_id = Orders.customer_id;":
+			return "Hint: Use 'JOIN' to combine rows from two tables based on a related column."
 		"SELECT COUNT(sale_id) AS total_transactions, SUM(sale_amount) AS total_sales FROM Sales;":
 			return "Hint: Use 'COUNT()' and 'SUM()' aggregation functions to get the total transactions and sales."
-		"SELECT * FROM Customers WHERE customer_name LIKE '%Smith%' ORDER BY customer_name ASC;":
+		"SELECT * FROM Customers WHERE customer_name LIKE '%Smith%' ORDER BY customer_name DESC;":
 			return "Hint: Use 'LIKE' with wildcards '%' to find substrings and 'ORDER BY' to sort results."
-		"SELECT Employees.employee_name, Departments.department_name FROM Employees INNER JOIN Departments ON Employees.department_id = Departments.department_id;":
-			return "Hint: Use 'INNER JOIN' on the 'department_id' column to retrieve related employee and department data."
+		"SELECT Employees.employee_name, Departments.department_name FROM Employees JOIN Departments ON Employees.department_id = Departments.department_id;":
+			return "Hint: Use 'JOIN' on the 'department_id' column to retrieve related employee and department data."
 		"SELECT Customers.customer_name, Orders.order_id FROM Customers FULL OUTER JOIN Orders ON Customers.customer_id = Orders.customer_id;":
 			return "Hint: Use 'FULL OUTER JOIN' to include all rows when there is a match in either table."
 		"SELECT employee_name FROM Employees UNION SELECT customer_name FROM Customers;":

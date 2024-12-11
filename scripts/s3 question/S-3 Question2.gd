@@ -15,7 +15,7 @@ var questions = [
 		"answer": "SELECT * FROM Inventory WHERE quantity BETWEEN 10 AND 50;"
 	},
 	{
-		"question": "Retrieve all employees whose names contain the substring 'an'.",
+		"question": "Retrieve all employee_name from “Employees” table whose names contain the substring 'an'.",
 		"answer": "SELECT employee_name FROM Employees WHERE employee_name LIKE '%an%';"
 	},
 	{

@@ -11,11 +11,11 @@ signal starChanged
 
 var questions = [
 	{
-		"question": "Replace 'Old Address' with 'New Address' in the address column of the 'Customers' table.",
-		"answer": "UPDATE Customers SET address = 'New Address' WHERE address = 'Old Address';"
+		"question": "Replace 'Jenny Cheese' with 'Kate Stevens' in the customer_name column of the 'Customers' table.",
+		"answer": "UPDATE Customers SET customer_name = 'Kate Stevens' WHERE customer_name = 'Jenny Cheese';"
 	},
 	{
-		"question": "Change the job_title to 'Senior Developer' for the employee with 'employee_id' 76 in the 'Employees' table.",
+		"question": "Change the job_title to 'Senior Developer' for the employee with employee_id 76 in the 'Employees' table.",
 		"answer": "UPDATE Employees SET job_title = 'Senior Developer' WHERE employee_id = 76;"
 	},
 	{
@@ -31,10 +31,11 @@ var questions = [
 		"answer": "UPDATE Employees SET first_name = 'Jane', last_name = 'Gomez' WHERE employee_id = 3;"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to update the salary of the employee with employee_id 10 to $55,000.",
+		"question": "You have a table named “Employees”. Write an SQL query to update the salary of the employee with employee_id 10 to $55,000.",
 		"answer": "UPDATE Employees SET salary = 55000 WHERE employee_id = 10;"
 	}
 ]
+
 
 
 var current_question = {}
@@ -130,7 +131,7 @@ func _on_hint_timer_timeout():
 # Function to get the hint based on the current answer
 func show_hint_result(answer: String) -> String:
 	match answer:
-		"UPDATE Customers SET address = 'New Address' WHERE address = 'Old Address';":
+		"UPDATE Customers SET customer_name = 'Kate Stevens' WHERE customer_name = 'Jenny Cheese';":
 			return "Hint: Use 'UPDATE' and 'SET' with a 'WHERE' clause to target specific rows."
 		"UPDATE Employees SET job_title = 'Senior Developer' WHERE employee_id = 76;":
 			return "Hint: Use 'UPDATE' and 'SET' to modify values, and 'WHERE' to specify the row."

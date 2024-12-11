@@ -11,23 +11,23 @@ signal starChanged
 
 var questions = [
 	{
-		"question": "Add James Perez to the 'Employees' table.",
-		"answer": "INSERT INTO Employees (name) VALUES ('James Perez');"
+		"question": "Add James Perez to the 'Employees' table in the employee_name column.",
+		"answer": "INSERT INTO Employees (employee_name) VALUES ('James Perez');"
 	},
 	{
 		"question": "How can you insert a new order with order_id = 2001 and total_amount = 150.00 into the 'Orders' table?",
 		"answer": "INSERT INTO Orders (order_id, total_amount) VALUES (2001, 150.00);"
 	},
 	{
-		"question": "Write a query to insert a new student into the 'Students' table with student_id = 123, name = 'Alice Smith', major = 'Computer Science', GPA = 3.5.",
-		"answer": "INSERT INTO Students (student_id, name, major, GPA) VALUES (123, 'Alice Smith', 'Computer Science', 3.5);"
+		"question": "Write a query to insert a new student into the 'Students' table with student_id = 123, student_name = 'Alice Smith', major = 'Computer Science', GPA = 3.5.",
+		"answer": "INSERT INTO Students (student_id, student_name, major, GPA) VALUES (123, 'Alice Smith', 'Computer Science', 3.5);"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to insert a new employee into the 'Employees' table with the following details: employee_id = 101, first_name = 'John', last_name = 'Doe', department = 'IT', salary = 70000.",
+		"question": "Write an SQL query to insert a new employee into the Employees table with the following details: employee_id = 101, first_name = 'John', last_name = 'Doe', department = 'IT', salary = 70000.",
 		"answer": "INSERT INTO Employees (employee_id, first_name, last_name, department, salary) VALUES (101, 'John', 'Doe', 'IT', 70000);"
 	},
 	{
-		"question": "Write a query to add a new customer with customer_id = 10 and name = 'Jane Smith'.",
+		"question": "Write a query to add a new customer with customer_id = 10 and name = 'Jane Smith' into the 'Customers' table.",
 		"answer": "INSERT INTO Customers (customer_id, name) VALUES (10, 'Jane Smith');"
 	},
 	{
@@ -129,11 +129,11 @@ func _on_hint_timer_timeout():
 # Function to get the hint based on the current answer
 func show_hint_result(answer: String) -> String:
 	match answer:
-		"INSERT INTO Employees (name) VALUES ('James Perez');":
+		"INSERT INTO Employees (employee_name) VALUES ('James Perez');":
 			return "Hint: Use 'INSERT INTO' to add data to the Employees table with one column."
 		"INSERT INTO Orders (order_id, total_amount) VALUES (2001, 150.00);":
 			return "Hint: Use 'INSERT INTO' with multiple column names to specify values."
-		"INSERT INTO Students (student_id, name, major, GPA) VALUES (123, 'Alice Smith', 'Computer Science', 3.5);":
+		"INSERT INTO Students (student_id, student_name, major, GPA) VALUES (123, 'Alice Smith', 'Computer Science', 3.5);":
 			return "Hint: Use 'INSERT INTO' to insert data into multiple columns including GPA."
 		"INSERT INTO Employees (employee_id, first_name, last_name, department, salary) VALUES (101, 'John', 'Doe', 'IT', 70000);":
 			return "Hint: Use 'INSERT INTO' with all relevant columns of the Employees table."

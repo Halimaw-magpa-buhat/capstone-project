@@ -31,8 +31,8 @@ var questions = [
 		"answer": "INSERT INTO Archived_Employees SELECT * FROM Employees;"
 	},
 	{
-		"question": "How do you categorize employees from the Employees table into three groups: 'High Salary' for those earning more than 70,000, 'Mid Salary' for those earning between 50,000 and 70,000, and 'Low Salary' for those earning below 50,000?",
-		"answer": "SELECT employee_name, CASE WHEN salary > 70000 THEN 'High Salary' WHEN salary BETWEEN 50000 AND 70000 THEN 'Mid Salary' ELSE 'Low Salary' END AS salary_category FROM Employees;"
+		"question": "You want to insert all customers from the Customers table into the New_Customers table. Get the customer_id and customer_name.",
+		"answer": "INSERT INTO New_Customers (customer_id, customer_name) SELECT customer_id, customer_name FROM Customers;"
 	}
 ]
 
@@ -139,8 +139,8 @@ func show_hint_result(answer: String) -> String:
 			return "Hint: Use 'SELECT INTO' to create a new table from an existing one."
 		"INSERT INTO Archived_Employees SELECT * FROM Employees;":
 			return "Hint: Use 'INSERT INTO' with 'SELECT' to copy records into another table."
-		"SELECT employee_name, CASE WHEN salary > 70000 THEN 'High Salary' WHEN salary BETWEEN 50000 AND 70000 THEN 'Mid Salary' ELSE 'Low Salary' END AS salary_category FROM Employees;":
-			return "Hint: Use 'CASE WHEN' in SQL to create conditional logic for categorizing data."
+		"INSERT INTO New_Customers (customer_id, customer_name) SELECT customer_id, customer_name FROM Customers;":
+			return "Hint: To copy data from one table to another, consider combining an INSERT INTO statement with a SELECT query. Think about how you can select specific columns from the original table and insert them directly into the target table."
 		_:
 			return "No specific hint available for this query."
 

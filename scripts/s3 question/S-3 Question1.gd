@@ -11,8 +11,8 @@ signal starChanged
 
 var questions = [
 	{
-		"question": "Find all employees who do not have a salary in the range of $30,000 to $50,000 from the 'Employees' table.",
-		"answer": "SELECT * FROM Employees WHERE salary < 30000 OR salary > 50000;"
+		"question": "Find all employees who have a salary in the range of $30,000 to $50,000 from the 'Employees' table.",
+		"answer": "SELECT * FROM Employees WHERE salary BETWEEN 30000 AND 50000;"
 	},
 	{
 		"question": "Retrieve the 'employee_name' and 'salary' from the 'Employees' table, and order the results by salary in ascending order.",
@@ -27,7 +27,7 @@ var questions = [
 		"answer": "SELECT * FROM Customers WHERE email LIKE '%@example.com';"
 	},
 	{
-		"question": "How can you select all employees whose last names contain 'son'?",
+		"question": "How can you select all employees whose last_name contain 'son'?",
 		"answer": "SELECT * FROM Employees WHERE last_name LIKE '%son%';"
 	},
 	{
@@ -129,8 +129,8 @@ func _on_hint_timer_timeout():
 # Function to get the hint based on the current answer
 func show_hint_result(answer: String) -> String:
 	match answer:
-		"SELECT * FROM Employees WHERE salary < 30000 OR salary > 50000;":
-			return "Hint: Use 'WHERE Greater than OR Less than' to exclude salary ranges."
+		"SELECT * FROM Employees WHERE salary BETWEEN 30000 AND 50000;":
+			return "Hint: Use 'WHERE ... BETWEEN ... AND ...' to filter salaries within a range."
 		"SELECT employee_name, salary FROM Employees ORDER BY salary ASC;":
 			return "Hint: Use 'ORDER BY ... ASC' to sort results by salary in ascending order."
 		"SELECT employee_name FROM Employees WHERE manager IS NULL;":

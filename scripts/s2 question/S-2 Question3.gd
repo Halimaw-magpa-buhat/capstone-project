@@ -23,7 +23,7 @@ var questions = [
 		"answer": "DELETE FROM Customers WHERE customer_id = 3;"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to delete all employees who work in the 'HR' department.",
+		"question": "You have a table named “Employees”. Write an SQL query to delete all employees who work in the ‘HR’ department.",
 		"answer": "DELETE FROM Employees WHERE department = 'HR';"
 	},
 	{
@@ -35,6 +35,7 @@ var questions = [
 		"answer": "DELETE FROM Suppliers WHERE supplier_name = 'Tech Supplies Inc.';"
 	}
 ]
+
 
 var current_question = {}
 var current_answer = ""

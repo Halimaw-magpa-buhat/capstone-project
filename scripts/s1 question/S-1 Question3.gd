@@ -11,8 +11,8 @@ signal starChanged
 
 var questions = [
 	{
-		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find the names of all employees who work in the Marketing department.",
-		"answer": "SELECT first_name, last_name FROM Employees WHERE department = 'Marketing';"
+		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find the first name and last name of all employees.",
+		"answer": "SELECT first_name, last_name FROM Employees;"
 	},
 	{
 		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find the first_name, last_name, and salary of employees who earn more than $50,000.",
@@ -23,11 +23,11 @@ var questions = [
 		"answer": "SELECT MAX(salary) FROM Employees;"
 	},
 	{
-		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to list all employees' first_name and last_name, sorted by last_name in alphabetical order.",
+		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to list all employees’ first_name and last_name, sorted by last_name in alphabetical order.",
 		"answer": "SELECT first_name, last_name FROM Employees ORDER BY last_name ASC;"
 	},
 	{
-		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find all employees with the last name Smith.",
+		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find all employees with the last name 'Smith'. Get the first name and last name.",
 		"answer": "SELECT first_name, last_name FROM Employees WHERE last_name = 'Smith';"
 	},
 	{
@@ -129,8 +129,8 @@ func _on_hint_timer_timeout():
 # Function to get the hint based on the current answer
 func show_hint_result(answer: String) -> String:
 	match answer:
-		"SELECT first_name, last_name FROM Employees WHERE department = 'Marketing';":
-			return "Hint: You need to filter the results based on a specific department. Use 'WHERE' clause."
+		"SELECT first_name, last_name FROM Employees;":
+			return "Hint: Use 'SELECT' with specific column names to retrieve only first and last names."
 		"SELECT first_name, last_name, salary FROM Employees WHERE salary > 50000;":
 			return "Hint: Use a condition to filter employees based on their salary. Use '>' for the condition."
 		"SELECT MAX(salary) FROM Employees;":

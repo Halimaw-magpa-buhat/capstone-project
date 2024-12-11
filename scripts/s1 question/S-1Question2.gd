@@ -11,23 +11,23 @@ signal starChanged
 
 var questions = [
 	{
-		"question": " How would you retrieve every row and column from a table named “Students”?",
+		"question": "How would you retrieve every row and column from a table named “Students”?",
 		"answer": "SELECT * FROM Students;"
 	},
 	{
-		"question": "How would you retrieve the title and author columns from a table named books?",
+		"question": "How would you retrieve the title and author columns from a table named “Books”?",
 		"answer": "SELECT title, author FROM Books;"
 	},
 	{
-		"question": "Retrieve all unique values in the department column from the employees table.",
+		"question": "Retrieve all unique values in the department column from the “Employees” table.",
 		"answer": "SELECT DISTINCT department FROM Employees;"
 	},
 	{
-		"question": "Find all entries in the teachers table.",
+		"question": "Find all entries in the “Teachers” table.",
 		"answer": "SELECT * FROM Teachers;"
 	},
 	{
-		"question": "List all unique cities from the addresses table.",
+		"question": "List all unique entries in city column from the “Addresses” table.",
 		"answer": "SELECT DISTINCT city FROM Addresses;"
 	},
 	{
@@ -131,7 +131,7 @@ func _on_hint_timer_timeout():
 func show_hint_result(answer: String) -> String:
 	match answer:
 		"SELECT * FROM Students;":
-			return "Hint: Use '*' to select all rows and columns from a table.;"
+			return "Hint: Use '*' to select all rows and columns from a table."
 		"SELECT title, author FROM Books;":
 			return "Hint: Specify column names to retrieve specific columns."
 		"SELECT DISTINCT department FROM Employees;":

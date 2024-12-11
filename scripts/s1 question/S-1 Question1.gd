@@ -15,15 +15,15 @@ var questions = [
 		"answer": "SELECT * FROM Employees;"
 	},
 	{
-		"question": "Write an SQL query to find the “first_name, and last_name’ from “Customers” table.",
-		"answer": "SELECT first_name, last_name FROM Employees;"
+		"question": "Write an SQL query to find the “first_name, and last_name” from “Customers” table.",
+		"answer": "SELECT first_name, last_name FROM Customers;"
 	},
 	{
-		"question": "You want to compile a list of email addresses of all users from the users table. How would you retrieve this?",
-		"answer": "SELECT email FROM Users;"
+		"question": "You want to compile the list of email_address column from the “Users” table. How would you retrieve this?",
+		"answer": "SELECT email_address FROM Users;"
 	},
 	{
-		"question": "You have a “Subscriptions” table. How would you retrieve the names of all customers?",
+		"question": "You have a “Subscriptions” table. How would you retrieve all from customer_name column?",
 		"answer": "SELECT customer_name FROM Subscriptions;"
 	},
 	{
@@ -76,12 +76,15 @@ func _on_send_pressed():
 		currentStar += 1
 		starChanged.emit(currentStar)
 		show_correct_result("Correct answer!")
+	
 	else:
 		print("Wrong answer!")
 		show_wrong_result("Wrong answer!")
+	
 
 	# Mark the question as answered for the corresponding fruit
 	GameManager.mark_question_answered(current_fruit_id)
+
 
 	# Clear the LineEdit input field
 	clear_input()
@@ -132,8 +135,8 @@ func show_hint_result(answer: String) -> String:
 			return "Hint: Use 'SELECT *' to retrieve all columns from the Employees table."
 		"SELECT first_name, last_name FROM Employees;":
 			return "Hint: Specify the columns (first_name, last_name) in the SELECT clause."
-		"SELECT email FROM Users;":
-			return "Hint: Use 'SELECT' with the 'email' column from the Users table."
+		"SELECT email_address FROM Users;":
+			return "Hint: Use 'SELECT' with the 'email_address' column from the Users table."
 		"SELECT customer_name FROM Subscriptions;":
 			return "Hint: Use 'SELECT customer_name' from the Subscriptions table."
 		"SELECT * FROM Orders;":

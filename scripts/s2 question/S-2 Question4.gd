@@ -15,23 +15,23 @@ var questions = [
 		"answer": "INSERT INTO Users (username, email) SELECT username, email FROM Old_Users WHERE status = 'Active';"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find employees who work in either the 'Finance' or 'IT' departments.",
+		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to find employees who work in either the 'Finance' or 'IT' departments. Get the first_name, last_name, department columns.",
 		"answer": "SELECT first_name, last_name, department FROM Employees WHERE department IN ('Finance', 'IT');"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to set the salary of all employees with a NULL salary to $40,000.",
+		"question": "You have a table named “Employees” with the following columns: employee_id, first_name, last_name, department, salary. Write an SQL query to set the salary of all employees with a NULL value to $40,000.",
 		"answer": "UPDATE Employees SET salary = 40000 WHERE salary IS NULL;"
 	},
 	{
-		"question": "Write a query to find all rows in the 'Employees' table where the email field is NULL.",
-		"answer": "SELECT * FROM Employees WHERE email IS NULL;"
+		"question": "Write a query to find all rows in the 'Employees' table where the email_address field is NULL.",
+		"answer": "SELECT * FROM Employees WHERE email_address IS NULL;"
 	},
 	{
-		"question": "Write a query to delete all rows from the 'Employees' table where the email field is NULL.",
-		"answer": "DELETE FROM Employees WHERE email IS NULL;"
+		"question": "Write a query to delete all rows from the 'Employees' table where the email_address field is NULL.",
+		"answer": "DELETE FROM Employees WHERE email_address IS NULL;"
 	},
 	{
-		"question": "Select all employees whose last_name does not start with the letter 'S'.",
+		"question": "Select all employees whose last_name do not start with the letter 'S'.",
 		"answer": "SELECT * FROM Employees WHERE last_name NOT LIKE 'S%';"
 	}
 ]
@@ -136,9 +136,9 @@ func show_hint_result(answer: String) -> String:
 			return "Hint: Use 'WHERE column_name IN (...)' to filter by multiple values."
 		"UPDATE Employees SET salary = 40000 WHERE salary IS NULL;":
 			return "Hint: Use 'UPDATE ... SET ... WHERE ... IS NULL' to modify rows where a column has NULL values."
-		"SELECT * FROM Employees WHERE email IS NULL;":
+		"SELECT * FROM Employees WHERE email_address IS NULL;":
 			return "Hint: Use 'WHERE column_name IS NULL' to filter rows where a column has NULL values."
-		"DELETE FROM Employees WHERE email IS NULL;":
+		"DELETE FROM Employees WHERE email_address IS NULL;":
 			return "Hint: Use 'DELETE FROM ... WHERE ... IS NULL' to remove rows with NULL values."
 		"SELECT * FROM Employees WHERE last_name NOT LIKE 'S%';":
 			return "Hint: Use 'WHERE column_name NOT LIKE pattern' to exclude values that match a pattern."

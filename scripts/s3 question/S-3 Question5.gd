@@ -11,27 +11,27 @@ signal starChanged
 
 var questions = [
 	{
-		"question": "Write a SQL query to count the number of products in each category. List the category name and the number of products in that category.",
+		"question": "Write an SQL query to count the number of products in each category from “Products” table. List the category and the number of products in that category labeled as “ProductCount”.",
 		"answer": "SELECT Category, COUNT(*) AS ProductCount FROM Products GROUP BY Category;"
 	},
 	{
-		"question": "Write a SQL query to find all products whose names contain the word 'Gadget'. List the ProductID and ProductName for these products.",
+		"question": "Write an SQL query to find all products whose names contain the word 'Gadget' from 'Products” table. List the ProductID and ProductName for these products.",
 		"answer": "SELECT ProductID, ProductName FROM Products WHERE ProductName LIKE '%Gadget%';"
 	},
 	{
-		"question": "Write a SQL query to adjust the price of products by adding $5 to each product's price. List the ProductID, ProductName, and the new price.",
+		"question": "Write a SQL query to adjust the price of products by adding $5 to each product's price. List the ProductID, ProductName, and Price labeled as NewPrice.",
 		"answer": "SELECT ProductID, ProductName, Price + 5 AS NewPrice FROM Products;"
 	},
 	{
-		"question": "The Employees table has employee_id, employee_name, and manager_id columns. Find all employees who work under the same manager.",
-		"answer": "SELECT e1.employee_name AS employee, e2.employee_name AS manager FROM Employees e1 JOIN Employees e2 ON e1.manager_id = e2.employee_id;"
+		"question": "You have a table named “Employees” that contains employee_id, first_name, and last_name and a table named “Departments” that contains department_id, employee_id, and department_name. Write an SQL query to list all employees along with their department names. If an employee is not assigned to a department, show NULL for the department name.",
+		"answer": "SELECT Employees.employee_id, Employees.first_name, Employees.last_name, Departments.department_name FROM Employees LEFT JOIN Departments ON Employees.employee_id = Departments.employee_id;"
 	},
 	{
-		"question": "Find the most expensive product in the Products table.",
-		"answer": "SELECT product_name, price FROM Products ORDER BY price DESC LIMIT 1;"
+		"question": "Find the most expensive product in the Products table. Get the product_name and price. Limit to 5 in descending order.",
+		"answer": "SELECT product_name, price FROM Products ORDER BY price DESC LIMIT 5;"
 	},
 	{
-		"question": "Find employees whose salary is above the average salary.",
+		"question": "Find employees whose salary is above the average salary. Get the employee_name and salary from “Employees” table.",
 		"answer": "SELECT employee_name, salary FROM Employees WHERE salary > (SELECT AVG(salary) FROM Employees);"
 	}
 ]
@@ -132,13 +132,13 @@ func show_hint_result(answer: String) -> String:
 		"SELECT Category, COUNT(*) AS ProductCount FROM Products GROUP BY Category;":
 			return "Hint: Use 'COUNT' with 'GROUP BY' to group and count records based on a category."
 		"SELECT ProductID, ProductName FROM Products WHERE ProductName LIKE '%Gadget%';":
-			return "Hint: Use 'LIKE' with wildcards '%' to find patterns in text."
+			return "Hint: Use 'LIKE' to filter the name and get the products that start with gadgets"
 		"SELECT ProductID, ProductName, Price + 5 AS NewPrice FROM Products;":
 			return "Hint: Use arithmetic operators like '+' in the SELECT clause to modify values."
 		"SELECT e1.employee_name AS employee, e2.employee_name AS manager FROM Employees e1 JOIN Employees e2 ON e1.manager_id = e2.employee_id;":
-			return "Hint: Use a 'JOIN' operation to link related rows in the same table for hierarchical data."
-		"SELECT product_name, price FROM Products ORDER BY price DESC LIMIT 1;":
-			return "Hint: Use 'ORDER BY' and 'LIMIT' to get the top result in a sorted list."
+			return "Hint: To retrieve data from two tables and include all records from one table even if there’s no match in the other, consider using a type of JOIN that keeps unmatched records. Look for a JOIN that includes all rows from the first table."
+		"SELECT product_name, price FROM Products LIMIT 1;":
+			return "Hint: To find the highest-priced item, look for a way to order products by price and limit your results to just one item. Consider using a sorting function combined with a way to select only the top result."
 		"SELECT employee_name, salary FROM Employees WHERE salary > (SELECT AVG(salary) FROM Employees);":
 			return "Hint: Use a subquery with 'AVG' to compare each row's value against the average."
 		_:

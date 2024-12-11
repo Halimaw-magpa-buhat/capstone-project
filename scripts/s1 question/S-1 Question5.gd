@@ -15,26 +15,27 @@ var questions = [
 		"answer": "SELECT AVG(salary) FROM Employees;"
 	},
 	{
-		"question": "Retrieve the names and salaries of employees whose salaries are between $40,000 and $60,000.",
+		"question": "Retrieve the employee_name and salary of employees whose salaries are between $40,000 and $60,000.",
 		"answer": "SELECT employee_name, salary FROM Employees WHERE salary BETWEEN 40000 AND 60000;"
 	},
 	{
-		"question": "Get the minimum and maximum age of employees.",
+		"question": "Get the minimum and maximum age from ‘Employees’ table.",
 		"answer": "SELECT MIN(age), MAX(age) FROM Employees;"
 	},
 	{
-		"question": "Retrieve all employee names that start with the letter 'A'.",
-		"answer": "SELECT employee_name FROM Employees WHERE name LIKE 'A%';"
+		"question": "Display the first_name of employees who are in the IT department and have a salary greater than $40,000 from the “Employees” table.",
+		"answer": "SELECT first_name FROM Employees WHERE department = 'IT' AND salary > 40000;"
 	},
 	{
-		"question": "Write a SQL query to select all employees whose salary is not between 40,000 and 60,000.",
-		"answer": "SELECT * FROM Employees WHERE Salary NOT BETWEEN 40000 AND 60000;"
+		"question": "Write an SQL query to select all employees whose salary is not between 40,000 and 60,000.",
+		"answer": "SELECT * FROM Employees WHERE salary NOT BETWEEN 40000 AND 60000;"
 	},
 	{
-		"question": "Write a query to select all orders that are not from customer ID 100.",
-		"answer": "SELECT * FROM Orders WHERE customer_id NOT IN (100);"
+		"question": "Calculate the sum of discount given in the ‘Sales’ table.",
+		"answer": "SELECT SUM(discount) FROM Sales;"
 	}
 ]
+
 
 var current_question = {}
 var current_answer = ""
@@ -135,12 +136,12 @@ func show_hint_result(answer: String) -> String:
 			return "Hint: Use 'BETWEEN' to filter a range of values."
 		"SELECT MIN(age), MAX(age) FROM Employees;":
 			return "Hint: You can use 'MIN' and 'MAX' functions to get the smallest and largest values."
-		"SELECT employee_name FROM Employees WHERE name LIKE 'A%';":
+		"SELECT first_name FROM Employees WHERE department = 'IT' AND salary > 40000;":
 			return "Hint: Use the 'LIKE' operator with a pattern to find names starting with a specific letter."
-		"SELECT * FROM Employees WHERE Salary NOT BETWEEN 40000 AND 60000;":
+		"SELECT * FROM Employees WHERE salary NOT BETWEEN 40000 AND 60000;":
 			return "Hint: Use 'NOT BETWEEN' to exclude a specific range of values."
-		"SELECT * FROM Orders WHERE customer_id NOT IN (100);":
-			return "Hint: Use 'NOT IN' to exclude specific values from the results."
+		"SELECT SUM(discount) FROM Sales;":
+			return "Hint: Use 'SUM()' to exclude specific values from the results."
 		_:
 			return "No specific hint available for this query."
 

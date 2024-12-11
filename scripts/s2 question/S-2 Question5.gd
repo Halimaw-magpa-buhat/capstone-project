@@ -11,28 +11,28 @@ signal starChanged
 
 var questions = [
 	{
-		"question": "Display the first_name of employees who are in the IT department and have a salary greater than $40,000 from the 'Employees' table.",
-		"answer": "SELECT first_name FROM Employees WHERE department = 'IT' AND salary > 40000;"
+		"question": "Retrieve all employee_name that start with the letter 'A'.",
+		"answer": "SELECT employee_name FROM Employees WHERE employee_name LIKE 'A%';"
 	},
 	{
 		"question": "Display the customer_name and the city from the 'Customers' table who live in New York or Los Angeles.",
-		"answer": "SELECT customer_name, city FROM Customers WHERE city = 'New York' OR city = 'Los Angeles';"
+		"answer": "SELECT customer_name, city FROM Customers WHERE city IN ('New York', 'Los Angeles');"
 	},
 	{
-		"question": "Find the total number of employees in the 'Employees' table and display it as 'total_employees'.",
-		"answer": "SELECT COUNT(*) AS total_employees FROM Employees;"
+		"question": "Find the total number of employee_name in the “Employees” table and display it as ‘total_employees’.",
+		"answer": "SELECT COUNT(employee_name) AS total_employees FROM Employees;"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: first_name, last_name, salary. Select the top 5 employees based on their salary in descending order.",
-		"answer": "SELECT first_name, last_name, salary FROM Employees ORDER BY salary DESC LIMIT 5;"
+		"question": "You have a table named “Employees”. Select the top 5 employees based on their salary in descending order. Get the first_name, last_name, and salary.",
+		"answer": "SELECT TOP 5 first_name, last_name, salary FROM Employees ORDER BY salary DESC;"
 	},
 	{
-		"question": "You have a table named 'Employees' with the following columns: first_name, last_name. Select the top 3 employees from the HR department.",
-		"answer": "SELECT first_name, last_name FROM Employees WHERE department = 'HR' LIMIT 3;"
+		"question": "You have a table named “Employees”. Select the top 3 employees from the ‘HR’ department. Get the first_name and last_name.",
+		"answer": "SELECT TOP 3 first_name, last_name FROM Employees WHERE department = 'HR';"
 	},
 	{
-		"question": "Calculate the total discounts given in the 'Sales' table.",
-		"answer": "SELECT SUM(discount) FROM Sales;"
+		"question": "Write a query to select all orders that are not from customer_id 100.",
+		"answer": "SELECT * FROM Orders WHERE customer_id NOT IN (100);"
 	}
 ]
 
@@ -129,21 +129,20 @@ func _on_hint_timer_timeout():
 # Function to get the hint based on the current answer
 func show_hint_result(answer: String) -> String:
 	match answer:
-		"SELECT first_name FROM Employees WHERE department = 'IT' AND salary > 40000;":
-			return "Hint: Use 'WHERE ... AND ...' to filter by department and salary."
-		"SELECT customer_name, city FROM Customers WHERE city = 'New York' OR city = 'Los Angeles';":
+		"SELECT employee_name FROM Employees WHERE employee_name LIKE 'A%';":
+			return "Hint: Use 'LIKE' to filter the names that start with A."
+		"SELECT customer_name, city FROM Customers WHERE city IN ('New York', 'Los Angeles');":
 			return "Hint: Use 'WHERE ... OR ...' to filter for multiple cities."
-		"SELECT COUNT(*) AS total_employees FROM Employees;":
+		"SELECT COUNT(employee_name) AS total_employees FROM Employees;":
 			return "Hint: Use 'COUNT(*)' to get the total number of rows."
-		"SELECT first_name, last_name, salary FROM Employees ORDER BY salary DESC LIMIT 5;":
+		"SELECT TOP 5 first_name, last_name, salary FROM Employees ORDER BY salary DESC;":
 			return "Hint: Use 'ORDER BY ... DESC' and 'LIMIT' to get the top results."
-		"SELECT first_name, last_name FROM Employees WHERE department = 'HR' LIMIT 3;":
+		"SELECT TOP 3 first_name, last_name FROM Employees WHERE department = 'HR';":
 			return "Hint: Use 'WHERE' to filter by department and 'LIMIT' to select the top 3."
-		"SELECT SUM(discount) FROM Sales;":
-			return "Hint: Use 'SUM()' to calculate the total of a column."
+		"SELECT * FROM Orders WHERE customer_id NOT IN (100);":
+			return "Hint: Use 'NOT IN()' to Get the orders he did not order"
 		_:
 			return "No specific hint available for this query."
-
 
 # Function to show an error message
 func show_error_message(message: String):
